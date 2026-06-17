@@ -293,7 +293,7 @@ export default function Header({ activeSection }: HeaderProps) {
                 <a
                   id="resume-download-link"
                   href={resumePdf}
-                  download
+                  download="chaitali-more-resume.pdf"
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => setShowResumeModal(false)}
