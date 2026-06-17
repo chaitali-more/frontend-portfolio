@@ -1,4 +1,8 @@
 import { Project, Experience, Stat, SkillCategory } from './types';
+import velmoraVideo from './assets/videos/velmoraNowVideo.mp4';
+import jiraBoardVideo from './assets/videos/jiraBoardVideo.mp4';
+import pharmafuseVideo from './assets/videos/pharmafuseVideo.mp4';
+
 
 export const stats: Stat[] = [
   {
@@ -115,7 +119,7 @@ export const projects: Project[] = [
  {
   id: 'proj1',
   category: 'Utility Platform',
-  videoUrl:"/src/assets/videos/velmora-now.mp4",
+   videoUrl:velmoraVideo,
   title: 'Velmora Now',
   description:
     'Designed and developed end-to-end: a frontend utility platform featuring browser-based health calculators (BMI, BMR, Protein, Macros, Water Intake), image compression & QR generation tools, and a dynamic blog. Set up full SEO strategies, Google Search Console, and Google Analytics to track user retention and index web assets.',
@@ -127,7 +131,7 @@ export const projects: Project[] = [
 {
   id: 'proj2',
   category: 'Utility Platform',
-  videoUrl:"/src/assets/videos/jira-board.mp4",
+  videoUrl:jiraBoardVideo,
   title: 'Jira-Style Task Board (Drag & Drop)',
   description:
     'A task management board that replicates Jira’s workflow experience. It includes drag-and-drop functionality implemented without using any external libraries. Users can create, move, and delete tasks effortlessly across different columns, with all data persisted in Local Storage to ensure tasks remain saved even after a page reload. The project also handles form submissions for task creation, offers a responsive UI.',
@@ -139,7 +143,7 @@ export const projects: Project[] = [
 {
   id: 'proj3',
   category: 'Utility Platform',
-  videoUrl:"/src/assets/videos/pharmafuse-healthcare.mp4",
+   videoUrl:pharmafuseVideo,
   title: 'Pharmafuse',
   description:
     'Built a dynamic and responsive pharmaceutical information portal using React, leveraging useState, useEffect, and React Router for efficient state management and navigation. Optimized performance, integrated third-party plugins for form validation/API handling, and deployed on Netlify to deliver a smooth, production-ready user experience.',
