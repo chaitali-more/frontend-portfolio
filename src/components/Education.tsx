@@ -1,0 +1,124 @@
+import { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
+import { GraduationCap, Calendar, Star } from 'lucide-react';
+
+export default function Education() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
+  return (
+    <section
+      id="education"
+      ref={containerRef}
+      className="py-24 border-t border-outline-variant/30 bg-surface-bg/30 relative"
+    >
+    
+
+      {/* Same radial glow as Contact */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(99,87,220,0.06) 0%, transparent 70%)',
+        }}
+      />
+
+      {/* Corner tints */}
+      <div
+        className="absolute top-0 right-0 w-72 h-72 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 100% 0%, rgba(192,132,252,0.08) 0%, transparent 60%)',
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-72 h-72 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 0% 100%, rgba(99,87,220,0.07) 0%, transparent 60%)',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
+        >
+          <p className="text-[11px] font-bold tracking-[0.2em] uppercase font-sans"
+            style={{ color: 'rgba(99,87,220,0.7)' }}>
+            Education
+          </p>
+        </motion.div>
+
+        {/* Education card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          whileHover={{ y: -3, transition: { duration: 0.2 } }}
+          className="group transition-all flex flex-col md:flex-row md:justify-between items-start md:items-center gap-6 p-6 md:p-8 rounded-2xl"
+          style={{
+            background: '#ffffff',
+            border: '1px solid rgba(99,87,220,0.18)',
+            boxShadow:
+              '0 0 0 1px rgba(99,87,220,0.08), 0 8px 32px rgba(99,87,220,0.10), 0 2px 8px rgba(0,0,0,0.05)',
+          }}
+        >
+          {/* Left — icon + degree info */}
+          <div className="flex items-center gap-4">
+            <div
+              className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 transition-colors"
+              style={{
+                background: 'rgba(99,87,220,0.08)',
+                color: '#6357dc',
+              }}
+            >
+              <GraduationCap size={28} />
+            </div>
+            <div>
+              <h3
+                className="font-display font-bold text-lg md:text-xl"
+                style={{ color: '#1a1a2e' }}
+              >
+                Bachelor of Computer Applications
+              </h3>
+              <p className="text-sm md:text-base text-neutral-muted font-sans font-light mt-0.5">
+                Tech University of Excellence
+              </p>
+            </div>
+          </div>
+
+          {/* Right — badges */}
+          <div className="flex items-center gap-3 md:self-center flex-wrap">
+            {/* Score badge */}
+            <div
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold"
+              style={{
+                background: 'rgba(99,87,220,0.08)',
+                border: '1px solid rgba(99,87,220,0.2)',
+                color: '#6357dc',
+              }}
+            >
+              <Star size={12} fill="currentColor" />
+              <span>8.5 / 10 CGPA</span>
+            </div>
+
+            {/* Date badge */}
+            <div
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold"
+              style={{
+                background: '#f8f8ff',
+                border: '1px solid rgba(99,87,220,0.15)',
+                color: '#1a1a2e',
+              }}
+            >
+              <Calendar size={13} style={{ color: '#6357dc' }} />
+              <span>Graduated 2021</span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

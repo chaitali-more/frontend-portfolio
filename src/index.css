@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-primary: #4338CA;
+  --color-primary-hover: #3730A3;
+  --color-primary-container: #EEF2FF;
+  --color-secondary-container: #EEF2FF;
+
+  --color-surface-container-low: #F8FAFC;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-bg: #F8FAFC;
+
+  --color-neutral-dark: #0F172A;
+  --color-neutral-muted: #475569;
+
+  --color-outline-variant: rgba(67, 56, 202, 0.16);
+  --animate-fade-in: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom styles and interactive enhancements */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for high-end feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef2ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4338ca;
+}
+
+/* Interactive focus states */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #4338ca;
+  outline-offset: 2px;
+}
+
+.scroll-reveal {
+  will-change: transform, opacity;
+}
+
+.scroll-depth-card {
+  will-change: transform, opacity, box-shadow;
+}
+
+@supports (animation-timeline: view()) {
+  .scroll-reveal {
+    animation: scroll-reveal-up both ease-out;
+    animation-timeline: view();
+    animation-range: entry 0% cover 32%;
+  }
+
+  .scroll-depth-card {
+    animation: scroll-depth-lift both ease-out;
+    animation-timeline: view();
+    animation-range: entry 4% cover 28%;
+  }
+}
+
+@keyframes scroll-reveal-up {
+  from {
+    opacity: 0.35;
+    transform: translateY(32px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scroll-depth-lift {
+  from {
+    opacity: 0.55;
+    transform: translateY(28px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 18px 45px rgba(67, 56, 202, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-depth-card {
+    animation: none;
+    transform: none;
+  }
+}

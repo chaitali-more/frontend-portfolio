@@ -1,0 +1,6 @@
+{
+  "name": "Developer Portfolio",
+  "description": "A premium, high-performance interactive developer portfolio using React, Tailwind CSS, and Framer Motion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
