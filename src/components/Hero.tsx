@@ -7,7 +7,7 @@ const proofItems = [
   'React.js · Next.js · Tailwind CSS',
   "Responsive Designs",
   'Figma to Code · Pixel Perfect UI',
-  '250+ Projects Delivered',
+  '200+ Projects Delivered',
   'SEO & Performance Optimized Builds',
 ];
 

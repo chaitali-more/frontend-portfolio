@@ -53,7 +53,7 @@ export default function About() {
  I'm a Frontend Developer with 4+ years of experience building responsive, user-friendly websites and web applications. I enjoy transforming designs into clean, pixel-perfect interfaces with a strong focus on performance, usability, and accessibility.
 </p>
 <p className="text-base text-neutral-muted font-sans font-light leading-relaxed">
-Over the years, I've delivered 250+ projects across various industries, working with modern technologies and ensuring every project is responsive, optimized, and easy to maintain.
+Over the years, I've delivered 200+ projects across various industries, working with modern technologies and ensuring every project is responsive, optimized, and easy to maintain.
 </p>
 
             </div>
@@ -143,7 +143,7 @@ function StatCard({ stat, index, triggerInView }: StatCardProps) {
           : `${count}`;
 
   const labels: Record<string, string> = {
-    '250+': 'Projects',
+    '200+': 'Projects',
     '4+': 'Years Exp',
     '10+': 'Core Tools',
     '100%': 'Responsive UI',
