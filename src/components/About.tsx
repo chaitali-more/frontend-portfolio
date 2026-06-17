@@ -4,7 +4,7 @@ import { stats } from '../data';
 import { Award, Zap, Monitor, Sparkles } from 'lucide-react';
 
 const iconsMap: Record<string, React.ReactNode> = {
-  '250+': <Award className="text-primary" size={20} />,
+  '200+': <Award className="text-primary" size={20} />,
   '4+': <Zap className="text-primary" size={20} />,
   '10+': <Monitor className="text-primary" size={20} />,
   '100%': <Sparkles className="text-primary" size={20} />,

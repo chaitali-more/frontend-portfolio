@@ -6,22 +6,22 @@ import pharmafuseVideo from './assets/videos/pharmafuseVideo.mp4';
 
 export const stats: Stat[] = [
   {
-    label: '250+',
-    value: '250+',
+    label: 'Projects Delivered ',
+    value: '200+',
     description: 'Client Satisfaction Index based on modern UX delivery and speed.',
   },
   {
-    label: '4+',
+    label: 'Years of Experience',
     value: '4+',
     description: 'Average turnaround communication response time for active projects.',
   },
   {
-    label: '10+',
-    value: '10+',
+    label: 'Core Tools',
+    value: '6+',
     description: 'Core developer libraries and visual tools used on a daily basis.',
   },
   {
-    label: '100%',
+    label: 'Responsive UI',
     value: '100%',
     description: 'Clean, reliable system architecture and perfect code standards.',
   },
