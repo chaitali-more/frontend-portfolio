@@ -10,6 +10,8 @@ export default function App() {
         <Route path="/sitemap" element={<SitemapPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/index.html" element={<Navigate to="/" replace />} />
+          {/* 404 Route */}
+  <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
