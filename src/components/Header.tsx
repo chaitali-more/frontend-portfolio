@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Download, Code2 } from 'lucide-react';
+import resumePdf from '../assets/pdf/chaitali-more-resume.pdf';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface HeaderProps {
@@ -42,7 +43,13 @@ export default function Header({ activeSection }: HeaderProps) {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
-    const target = document.querySelector(href);
+    const target = href === '#' ? null : document.querySelector(href);
+
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (target) {
       const top = target.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
@@ -69,9 +76,9 @@ export default function Header({ activeSection }: HeaderProps) {
           {/* Brand Logo */}
           <a
             id="brand-logo"
-            href="#"
+            href="#hero"
             className="flex items-center gap-2.5 group"
-            onClick={(e) => handleLinkClick(e, '#')}
+            onClick={(e) => handleLinkClick(e, '#hero')}
           >
             <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-primary-hover flex items-center justify-center text-white shadow-md shadow-primary/20 group-hover:shadow-lg group-hover:shadow-primary/30 group-hover:scale-105 transition-all duration-300">
               <Code2 size={18} className="stroke-[2.5]" />
@@ -269,8 +276,8 @@ export default function Header({ activeSection }: HeaderProps) {
                     <FileText size={22} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-neutral-dark leading-tight">Curriculum Vitae</h3>
-                    <p className="text-xs text-neutral-muted">Keep this action simple for recruiters</p>
+                    <h3 className="font-display font-bold text-xl text-neutral-dark leading-tight">  Download Resume</h3>
+                    <p className="text-xs text-neutral-muted"> Frontend Developer | UI/UX Enthusiast</p>
                   </div>
                 </div>
                 <button
@@ -285,30 +292,25 @@ export default function Header({ activeSection }: HeaderProps) {
               <div className="flex flex-col gap-3">
                 <a
                   id="resume-download-link"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowResumeModal(false);
-                    alert('Resume downloading completed successfully!');
-                  }}
+                  href={resumePdf}
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setShowResumeModal(false)}
                   className="flex items-center justify-between p-4 bg-primary/5 hover:bg-primary/10 rounded-xl transition-all duration-200 text-neutral-dark group cursor-pointer text-left"
                 >
                   <div className="flex items-center gap-3">
                     <Download className="text-primary" size={20} />
                     <div>
                       <h4 className="font-sans font-semibold text-sm">Download Resume</h4>
-                      <p className="text-xs text-neutral-muted">PDF resume for recruiter screening</p>
+                      <p className="text-xs text-neutral-muted">Explore my professional background and expertise.</p>
                     </div>
                   </div>
                   <Download size={16} className="text-neutral-muted group-hover:text-primary transition-colors" />
                 </a>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-outline-variant/50 text-center">
-                <p className="text-[11px] text-neutral-muted">
-                  Last updated: June 2026 · Built on React + ESM
-                </p>
-              </div>
+            
             </motion.div>
           </div>
         )}

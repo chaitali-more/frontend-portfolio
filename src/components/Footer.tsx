@@ -12,6 +12,13 @@ export default function Footer() {
     });
   };
 
+  const handleSitemapClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
    <footer className="border-t border-outline-variant/30 py-4">
   <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -20,6 +27,7 @@ export default function Footer() {
       <p>© 2026 Chaitali More. All rights reserved. | </p>
       <Link
         to="/sitemap"
+        onClick={handleSitemapClick}
         className="inline-flex text-sm font-semibold text-primary transition-colors hover:text-primary-hover"
       >
         Sitemap
