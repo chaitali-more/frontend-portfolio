@@ -30,7 +30,7 @@ export const stats: Stat[] = [
 export const experiences: Experience[] = [
   {
     id: 'exp1',
-    role: 'UI/UX Developer',
+    role: 'Frontend Developer',
     company: 'Dots & Coms',
     period: 'Nov 2022 - Present',
   bullets: [
