@@ -2,6 +2,7 @@ import { Project, Experience, Stat, SkillCategory } from './types';
 import velmoraVideo from './assets/videos/velmoraNowVideo.mp4';
 import jiraBoardVideo from './assets/videos/jiraBoardVideo.mp4';
 import pharmafuseVideo from './assets/videos/pharmafuseVideo.mp4';
+import studioVarnVideo from './assets/videos/studio-varn-video.mp4';
 
 
 export const stats: Stat[] = [
@@ -127,6 +128,23 @@ export const projects: Project[] = [
   liveUrl: 'https://www.velmoranow.in',
   githubUrl: 'https://github.com/chaitali-more/Velmora',
  
+},
+{
+  id: 'proj4',
+  category: 'Business Website',
+  videoUrl: studioVarnVideo,
+  title: 'Studio Varn',
+  description:
+    'Designed and developed a modern business website from scratch using Next.js and TypeScript. Built responsive UI components, implemented reusable architecture, optimized performance, and configured technical SEO. Integrated Google Analytics and Google Search Console for traffic monitoring, indexing, and search performance, then deployed the application on Vercel.',
+  tags: [
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'Vercel',
+    'SEO',
+  ],
+  liveUrl: 'https://www.studiovarn.com/',
+  githubUrl: 'https://github.com/chaitali-more/studio_varn_new',
 },
 {
   id: 'proj2',
