@@ -81,10 +81,10 @@ export default function Education() {
                 className="font-display font-bold text-lg md:text-xl"
                 style={{ color: '#1a1a2e' }}
               >
-                Bachelor of Computer Applications
+                B.Tech in Computer Science and Engineering (CSE)
               </h3>
               <p className="text-sm md:text-base text-neutral-muted font-sans font-light mt-0.5">
-                Tech University of Excellence
+                ITM Universe, Vadodara, Gujarat
               </p>
             </div>
           </div>
