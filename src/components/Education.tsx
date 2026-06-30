@@ -101,7 +101,7 @@ export default function Education() {
               }}
             >
               <Star size={12} fill="currentColor" />
-              <span>8.5 / 10 CGPA</span>
+              <span>8.5 CGPA</span>
             </div>
 
             {/* Date badge */}
