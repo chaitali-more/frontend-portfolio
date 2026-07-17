@@ -2,14 +2,17 @@ import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useInView } from 'motion/react';
 import { projects } from '../data';
-import { ExternalLink, X, Play } from 'lucide-react';
+import { ExternalLink, X, Play, ChevronDown, ChevronUp } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
 
 export default function Projects() {
   const [activeVideo, setActiveVideo] = useState<{ url: string; title: string } | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
+
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
     <>
@@ -39,7 +42,7 @@ export default function Projects() {
           {/* Project Cards */}
           <div className="space-y-8">
             <AnimatePresence mode="popLayout">
-              {projects.map((project, index) => (
+              {visibleProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   layout
@@ -128,6 +131,44 @@ export default function Projects() {
               ))}
             </AnimatePresence>
           </div>
+
+          {/* View More Button */}
+          {projects.length > 4 && (
+            <div className="flex justify-center mt-12">
+              <motion.button
+                layout
+                onClick={() => setShowAll(!showAll)}
+                className="
+                  border
+                  border-outline-variant
+                  bg-white
+                  hover:border-primary
+                  hover:bg-primary-container
+                  hover:text-primary
+                  text-neutral-dark
+                  px-8
+                  py-3.5
+                  rounded-lg
+                  text-sm
+                  font-semibold
+                  tracking-wide
+                  shadow-sm
+                  hover:shadow-md
+                  hover:-translate-y-0.5
+                  active:translate-y-px
+                  flex
+                  items-center
+                  gap-2
+                  transition-all
+                  duration-300
+                  cursor-pointer
+                "
+              >
+                <span>{showAll ? 'Show Less' : 'View More Projects'}</span>
+                {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </motion.button>
+            </div>
+          )}
         </div>
       </section>
 

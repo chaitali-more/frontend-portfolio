@@ -1,6 +1,6 @@
 export interface Project {
   id: string;
-  category: 'Portal' | 'E-commerce' | 'Web3' | 'Utility Platform';
+  category: 'Portal' | 'E-commerce' | 'Web3' | 'Utility Platform' | 'Business Website';
   videoUrl?: string;
   title: string;
   description: string;

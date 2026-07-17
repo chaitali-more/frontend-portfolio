@@ -114,7 +114,19 @@ export default function Education() {
               }}
             >
               <Calendar size={13} style={{ color: '#6357dc' }} />
-              <span>Graduated 2021</span>
+              <span>2017 - 2021</span>
+            </div>
+
+            {/* Duration badge */}
+            <div
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold"
+              style={{
+                background: 'rgba(99,87,220,0.08)',
+                border: '1px solid rgba(99,87,220,0.2)',
+                color: '#6357dc',
+              }}
+            >
+              <span>4 Years</span>
             </div>
           </div>
         </motion.div>

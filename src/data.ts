@@ -3,6 +3,8 @@ import velmoraVideo from './assets/videos/velmoraNowVideo.mp4';
 import jiraBoardVideo from './assets/videos/jiraBoardVideo.mp4';
 import pharmafuseVideo from './assets/videos/pharmafuseVideo.mp4';
 import studioVarnVideo from './assets/videos/studio-varn-video.mp4';
+import uniqueenVideo from './assets/videos/uniqueencream.mp4';
+import shrikptiwariVideo from './assets/videos/shrikptiwari.mp4';
 
 
 export const stats: Stat[] = [
@@ -145,6 +147,28 @@ export const projects: Project[] = [
   ],
   liveUrl: 'https://www.studiovarn.com/',
   githubUrl: 'https://github.com/chaitali-more/studio_varn_new',
+},
+{
+  id: 'proj5',
+  category: 'E-commerce',
+  videoUrl: uniqueenVideo,
+  title: 'Uniqueen Cream',
+  description:
+    'Developed a premium e-commerce platform for science-backed skin depigmentation care under WHO GMP standards. Engineered using Next.js and TypeScript, incorporating optimized product catalogs, clinical-grade formulation showcases, full technical SEO, and seamless device-responsive user journeys.',
+  tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel', 'E-commerce', 'SEO'],
+  liveUrl: 'https://www.uniqueencream.com/',
+  githubUrl: 'https://github.com/chaitali-more/uniqueen',
+},
+{
+  id: 'proj6',
+  category: 'Portal',
+  videoUrl: shrikptiwariVideo,
+  title: 'Pandit Shri Kashi Prasad Tiwari Trust',
+  description:
+    'Designed and developed a public charitable trust portal dedicated to compassion, humanity, and selfless service. Integrated pages for education support, healthcare programs, and community welfare initiatives in Prayagraj, optimizing for performance, accessibility, and high search visibility.',
+  tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel', 'SEO'],
+  liveUrl: 'https://www.shrikptiwari.org/',
+  githubUrl: 'https://github.com/chaitali-more/PanditShriKashiPrasadTiwariTrust',
 },
 {
   id: 'proj2',
