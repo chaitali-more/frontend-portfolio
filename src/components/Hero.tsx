@@ -168,7 +168,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start w-full sm:w-auto"
+            className="flex flex-col sm:flex-row gap-4 items-start justify-start w-full sm:w-auto"
           >
             <a
               id="see-work-btn"
@@ -250,8 +250,8 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT COLUMN: Premium Tech Stack Dashboard Browser Mockup */}
-        <div className="lg:col-span-6 flex items-center justify-center w-full relative">
+        {/* RIGHT COLUMN: Premium Tech Stack Dashboard Browser Mockup — hidden on mobile & tablet */}
+        <div className="hidden lg:flex lg:col-span-6 items-center justify-center w-full relative">
           <motion.div
             ref={cardRef}
             style={{

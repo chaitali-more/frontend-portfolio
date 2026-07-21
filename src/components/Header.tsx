@@ -109,7 +109,7 @@ export default function Header({ activeSection }: HeaderProps) {
           </a>
 
           {/* ── Desktop Navigation (unchanged) ── */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             <div className="flex items-center gap-1 bg-neutral-dark/0 hover:bg-neutral-dark/[0.01] p-1 rounded-xl transition-all duration-300">
               {navLinks.map((link) => (
                 <a
@@ -149,7 +149,7 @@ export default function Header({ activeSection }: HeaderProps) {
           <button
             id="mobile-menu-trigger"
             onClick={() => setIsOpen(true)}
-            className="md:hidden text-neutral-dark hover:text-[#06B6D4] transition-colors focus:outline-none cursor-pointer p-1.5 rounded-lg hover:bg-[#06B6D4]/5"
+            className="lg:hidden text-neutral-dark hover:text-[#06B6D4] transition-colors focus:outline-none cursor-pointer p-1.5 rounded-lg hover:bg-[#06B6D4]/5"
             aria-label="Open Menu"
           >
             <Menu size={22} />
