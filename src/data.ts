@@ -5,6 +5,7 @@ import pharmafuseVideo from './assets/videos/pharmafuseVideo.mp4';
 import studioVarnVideo from './assets/videos/studio-varn-video.mp4';
 import uniqueenVideo from './assets/videos/uniqueencream.mp4';
 import shrikptiwariVideo from './assets/videos/shrikptiwari.mp4';
+import reactHooksLabImage from './assets/images/react-hooks-lab.png';
 
 
 export const stats: Stat[] = [
@@ -121,7 +122,7 @@ export const skillCategories: SkillCategory[] = [
 export const projects: Project[] = [
  {
   id: 'proj1',
-  category: 'Utility Platform',
+  category: 'Live Project',
    videoUrl:velmoraVideo,
   title: 'Velmora Now',
   description:
@@ -133,7 +134,7 @@ export const projects: Project[] = [
 },
 {
   id: 'proj4',
-  category: 'Business Website',
+  category: 'Live Project',
   videoUrl: studioVarnVideo,
   title: 'Studio Varn',
   description:
@@ -150,7 +151,7 @@ export const projects: Project[] = [
 },
 {
   id: 'proj5',
-  category: 'E-commerce',
+  category: 'Live Project',
   videoUrl: uniqueenVideo,
   title: 'Uniqueen Cream',
   description:
@@ -161,7 +162,7 @@ export const projects: Project[] = [
 },
 {
   id: 'proj6',
-  category: 'Portal',
+  category: 'Live Project',
   videoUrl: shrikptiwariVideo,
   title: 'Pandit Shri Kashi Prasad Tiwari Trust',
   description:
@@ -172,7 +173,7 @@ export const projects: Project[] = [
 },
 {
   id: 'proj2',
-  category: 'Utility Platform',
+  category: 'Practice Project',
   videoUrl:jiraBoardVideo,
   title: 'Jira-Style Task Board (Drag & Drop)',
   description:
@@ -182,9 +183,20 @@ export const projects: Project[] = [
   githubUrl: 'https://github.com/chaitali-more/',
  
 },
+  {
+    id: 'proj_hooks',
+    category: 'Practice Project',
+    imageUrl: reactHooksLabImage,
+    title: 'React Hooks & Lifecycle Lab',
+    description:
+      'An interactive learning and exploration dashboard designed to visualize React hook mechanisms, component lifecycles, and rendering behaviors. Features live state tracking, action logs, and performance demonstrations of core hooks (useState, useEffect, useRef, useContext, forwardRef) and advanced APIs (useReducer, useMemo, useID, useTransition) built with Tailwind CSS.',
+    tags: ['React.js', 'Tailwind CSS', 'TypeScript', 'Hooks', 'Vercel'],
+    liveUrl: 'https://react-hooks-jet-seven.vercel.app/',
+    githubUrl: 'https://github.com/chaitali-more/React-Hooks',
+  },
 {
   id: 'proj3',
-  category: 'Utility Platform',
+  category: 'Practice Project',
    videoUrl:pharmafuseVideo,
   title: 'Pharmafuse',
   description:

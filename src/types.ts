@@ -1,7 +1,8 @@
 export interface Project {
   id: string;
-  category: 'Portal' | 'E-commerce' | 'Web3' | 'Utility Platform' | 'Business Website';
+  category: 'Live Project' | 'Practice Project';
   videoUrl?: string;
+  imageUrl?: string;
   title: string;
   description: string;
   longDescription?: string;

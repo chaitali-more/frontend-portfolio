@@ -1,43 +1,51 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { Sparkles, Code, Layout, ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, Sparkles, Code2, Globe, Zap, RotateCcw } from 'lucide-react';
+import { FaReact } from 'react-icons/fa6';
+import { 
+  SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux, SiShopify, 
+  SiFigma, SiGoogle, SiDotnet, SiJavascript, SiHtml5, 
+  SiCss, SiBootstrap, SiJquery, SiWordpress, SiGithub 
+} from 'react-icons/si';
+import resumePdf from '../assets/pdf/chaitali-more-resume.pdf';
 
-const proofItems = [
-  'Open to Frontend / React Developer roles',
-  'React.js · Next.js · Tailwind CSS',
-  "Responsive Designs",
-  'Figma to Code · Pixel Perfect UI',
-  '200+ Projects Delivered',
-  'SEO & Performance Optimized Builds',
+const rotatingWords = ['scale.', 'perform.', 'convert.', 'impress.', 'grow.'];
+
+// Full 16 tech stack categorized for the marquee columns
+const col1Tech = [
+  { name: 'React.js', Icon: FaReact, color: '#61DAFB', cat: 'Framework' },
+  { name: 'Next.js', Icon: SiNextdotjs, color: '#000000', cat: 'Framework' },
+  { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6', cat: 'Language' },
+  { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4', cat: 'Styling' },
+  { name: 'Redux Toolkit', Icon: SiRedux, color: '#764ABC', cat: 'State' },
+];
+
+const col2Tech = [
+  { name: 'Shopify Liquid', Icon: SiShopify, color: '#96BF48', cat: 'CMS' },
+  { name: 'ASP.NET', Icon: SiDotnet, color: '#512BD4', cat: 'Backend' },
+  { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E', cat: 'Language' },
+  { name: 'HTML5', Icon: SiHtml5, color: '#E34F26', cat: 'Language' },
+  { name: 'CSS3', Icon: SiCss, color: '#1572B6', cat: 'Styling' },
+];
+
+const col3Tech = [
+  { name: 'Figma', Icon: SiFigma, color: '#F24E1E', cat: 'Design' },
+  { name: 'SEO & Vitals', Icon: SiGoogle, color: '#4285F4', cat: 'Marketing' },
+  { name: 'WordPress', Icon: SiWordpress, color: '#21759B', cat: 'CMS' },
+  { name: 'Git & GitHub', Icon: SiGithub, color: '#181717', cat: 'DevOps' },
+  { name: 'Bootstrap', Icon: SiBootstrap, color: '#7952B3', cat: 'Styling' },
+  { name: 'jQuery', Icon: SiJquery, color: '#0769AD', cat: 'Library' },
 ];
 
 export default function Hero() {
-  const [balance, setBalance] = useState(50); // 0 = Pure Design, 100 = Pure Engineering
-  const [isHovered, setIsHovered] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
 
-  // For 3D Tilt Effect on the showcase card using motion values
-  const cardRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Springs for smooth movement
-  const rotateX = useSpring(useTransform(y, [-150, 150], [10, -10]), { damping: 25, stiffness: 150 });
-  const rotateY = useSpring(useTransform(x, [-150, 150], [-10, 10]), { damping: 25, stiffness: 150 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    x.set(e.clientX - centerX);
-    y.set(e.clientY - centerY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -51,363 +59,286 @@ export default function Hero() {
     }
   };
 
-  // Determine styles/text based on the active slider range
-  const isDesignPrimary = balance < 40;
-  const isEngineeringPrimary = balance > 60;
-  const isOptimalHarmony = balance >= 40 && balance <= 60;
+  // For 3D Tilt Parallax Effect on the Browser Mockup
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [6, -6]), { damping: 25, stiffness: 120 });
+  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-6, 6]), { damping: 25, stiffness: 120 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX.set(e.clientX - centerX);
+    mouseY.set(e.clientY - centerY);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-12 lg:pt-22 lg:pb-10 bg-white/40 overflow-hidden border-b border-outline-variant/30 flex flex-col justify-center min-h-screen"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-[#F8FAFC] overflow-hidden border-b border-slate-100 flex flex-col justify-center min-h-[92vh] md:min-h-screen"
     >
-      {/* Decorative ambient blurred backgrounds */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-2xl pointer-events-none translate-x-1/2 translate-y-1/2" />
+      {/* Subtle blue/purple radial gradient backgrounds */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100/30 via-[#F8FAFC] to-[#F8FAFC]" />
+      <div className="absolute top-[20%] left-1/4 w-[450px] h-[450px] bg-slate-200/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] bg-slate-200/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-8 items-center relative z-10">
-        {/* Left column: Text Content */}
-        <div className="lg:col-span-7 space-y-5 md:space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
-          {/* Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-50 border border-emerald-200/60 rounded-full shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <p className="text-[11px] font-bold text-emerald-800 uppercase tracking-[0.18em]">
-              Open to Opportunities
-            </p>
-          </div>
+      {/* Very light dotted grid overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
 
-          {/* Main Title */}
-          <h1 className="font-display text-4xl md:text-6xl lg:text-[4rem] font-bold leading-[1.06] tracking-tighter text-neutral-dark max-w-3xl">
-        
-            Building interfaces
-            <br />
-            that{' '}
-            <span className="inline-block relative min-w-[7.5rem] text-left">
-              <AnimatePresence mode="wait">
-                {balance > 50 ? (
-                  <motion.span
-                    key="code-perf"
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    transition={{ duration: 0.15 }}
-                    className="text-primary font-mono tracking-tight inline-block"
-                  >
-                    &lt;perform&gt;
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="design-perf"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
-                    className="text-primary font-display inline-block"
-                  >
-                    perform
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </span>{' '}
-            and{' '}
-            <span className="inline-block relative min-w-[7.5rem] text-left">
-              <AnimatePresence mode="wait">
-                {balance > 50 ? (
-                  <motion.span
-                    key="code-impress"
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    transition={{ duration: 0.15 }}
-                    className="text-primary font-mono tracking-tight inline-block"
-                  >
-                    impress()
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="design-impress"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
-                    className="text-primary font-display italic font-extrabold inline-block"
-                  >
-                    impress.
-                  </motion.span>
-                )}
-              </AnimatePresence>
+      {/* Very subtle code snippets floating in opacity 0.03 */}
+      <div className="absolute top-16 left-8 font-mono text-[9px] text-[#0F172A] opacity-[0.03] select-none pointer-events-none hidden lg:block">
+        {"const [wordIndex, setWordIndex] = useState(0);"}
+        <br />
+        {"useEffect(() => { setWordIndex(index => index + 1) }, 2500);"}
+      </div>
+      <div className="absolute bottom-24 right-1/3 font-mono text-[9px] text-[#0F172A] opacity-[0.03] select-none pointer-events-none hidden lg:block">
+        {"export default function Projects() { const visible = projects.slice(0, 4); }"}
+      </div>
+
+      {/* Two-column Hero container */}
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10 w-full">
+        {/* LEFT COLUMN: Text & CTAs */}
+        <div className="lg:col-span-6 flex flex-col justify-center text-left items-start space-y-6 md:space-y-8">
+          {/* Small Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0F172A]/5 border border-[#0F172A]/15 rounded-full shadow-sm"
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06B6D4]/40 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#0F172A]"></span>
             </span>
-          </h1>
+            <p className="text-[10px] md:text-[11px] font-mono font-bold tracking-wider text-[#0F172A] uppercase">
+              Frontend Developer • React • Next.js
+            </p>
+          </motion.div>
 
-          {/* Subtext */}
-          <p className="text-base text-neutral-muted max-w-2xl font-sans font-light leading-relaxed">
-Frontend Developer with 4+ years of experience building responsive, fast, and user-friendly web applications using HTML, CSS, JavaScript, React.js, Next.js and modern UI technologies.
-          </p>
+          {/* Large Premium Heading */}
+          <div className="space-y-4 md:space-y-5 max-w-2xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-3xl sm:text-4xl lg:text-[3.5rem] lg:leading-[1.12] font-extrabold tracking-tight text-[#0F172A]"
+            >
+              Hi, I'm Chaitali More.
+              <br />
+              Building React apps that{' '}
+              <span className="inline-block relative text-[#0F172A] min-w-[100px] sm:min-w-[170px] md:min-w-[200px] text-left">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={rotatingWords[wordIndex]}
+                    initial={{ opacity: 0, y: 12, filter: 'blur(3px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -12, filter: 'blur(3px)' }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    className="bg-gradient-to-r from-[#0F172A] via-[#06B6D4] to-[#1E293B] bg-clip-text text-transparent font-extrabold block"
+                  >
+                    {rotatingWords[wordIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </motion.h1>
 
-          {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start w-full sm:w-auto">
-           <a
-  id="see-work-btn"
-  href="#projects"
-  onClick={(e) => scrollToSection(e, '#projects')}
-  className="
-    bg-primary
-    hover:bg-primary-hover
-    text-white
-    text-center
-    px-7
-    py-3.5
-    rounded-lg
-    text-sm
-    font-semibold
-    tracking-wide
-    shadow-lg
-    shadow-primary/20
-    hover:shadow-xl
-    hover:shadow-primary/30
-    hover:-translate-y-0.5
-    active:translate-y-px
-    flex
-    items-center
-    justify-center
-    gap-2
-    transition-all
-    duration-300
-    w-full
-    sm:w-auto
-    group
-    cursor-pointer
-  "
->
-  See My Work
-  <ArrowRight
-    size={16}
-    className="transition-transform duration-300 group-hover:translate-x-1"
-  />
-</a>
-
-<a
-  id="talk-btn"
-  href="#contact"
-  onClick={(e) => scrollToSection(e, '#contact')}
-  className="
-    border
-    border-outline-variant
-    bg-white
-    hover:border-primary
-    hover:bg-primary-container
-    hover:text-primary
-    text-neutral-dark
-    text-center
-    px-7
-    py-3.5
-    rounded-lg
-    text-sm
-    font-semibold
-    tracking-wide
-    shadow-sm
-    hover:shadow-md
-    hover:-translate-y-0.5
-    active:translate-y-px
-    flex
-    items-center
-    justify-center
-    gap-2
-    transition-all
-    duration-300
-    w-full
-    sm:w-auto
-    cursor-pointer
-  "
->
-  Get in Touch
-</a>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base sm:text-lg text-[#64748B] font-sans font-light leading-relaxed max-w-xl"
+            >
+              Frontend Developer with 4+ years of experience building responsive, accessible and SEO-optimized web applications using React.js, Next.js, JavaScript and modern frontend technologies.
+            </motion.p>
           </div>
 
-          <div className="scroll-depth-card w-full max-w-3xl bg-white/90 border border-outline-variant/70 rounded-2xl shadow-sm p-3 md:p-4">
-            <div className="flex flex-wrap gap-2">
-              {proofItems.map((item) => (
-                <span
-                  key={item}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-outline-variant bg-primary-container px-2.5 py-1.5 text-[10px] md:text-[11px] font-semibold text-neutral-dark"
-                >
-                  <CheckCircle size={13} className="text-primary shrink-0" />
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
+          {/* Call To Actions */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start w-full sm:w-auto"
+          >
+            <a
+              id="see-work-btn"
+              href="#projects"
+              onClick={(e) => scrollToSection(e, '#projects')}
+              className="
+                bg-[#0F172A]
+                hover:bg-[#06B6D4]
+                text-white
+                text-center
+                px-8
+                py-4
+                rounded-2xl
+                text-sm
+                font-bold
+                tracking-wider
+                uppercase
+                shadow-lg
+                shadow-[#0F172A]/10
+                hover:shadow-xl
+                hover:shadow-[#06B6D4]/20
+                hover:-translate-y-0.5
+                active:translate-y-px
+                flex
+                items-center
+                justify-center
+                gap-2
+                transition-all
+                duration-300
+                w-full
+                sm:w-auto
+                group
+                cursor-pointer
+              "
+            >
+              <span>View Projects</span>
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </a>
+
+            <a
+              id="download-resume-btn"
+              href={resumePdf}
+              download="chaitali-more-resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="
+                border-2
+                border-slate-200
+                bg-transparent
+                hover:border-[#06B6D4]
+                hover:text-[#06B6D4]
+                text-[#0F172A]
+                text-center
+                px-8
+                py-3.5
+                rounded-2xl
+                text-sm
+                font-bold
+                tracking-wider
+                uppercase
+                hover:-translate-y-0.5
+                active:translate-y-px
+                flex
+                items-center
+                justify-center
+                gap-2
+                transition-all
+                duration-300
+                w-full
+                sm:w-auto
+                cursor-pointer
+              "
+            >
+              Download Resume
+            </a>
+          </motion.div>
         </div>
 
-        {/* Right column: Interactive Visual Showcase Plate */}
-        <div className="lg:col-span-5 flex flex-col items-center justify-center gap-4 w-full">
+        {/* RIGHT COLUMN: Premium Tech Stack Dashboard Browser Mockup */}
+        <div className="lg:col-span-6 flex items-center justify-center w-full relative">
           <motion.div
-            id="hero-interactive-card"
             ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            onMouseEnter={() => setIsHovered(true)}
             style={{
-              rotateX: isHovered ? rotateX : 0,
-              rotateY: isHovered ? rotateY : 0,
+              rotateX,
+              rotateY,
               transformStyle: 'preserve-3d',
             }}
-            className="w-full max-w-[320px] h-[320px] lg:max-w-[340px] lg:h-[340px] bg-white rounded-2xl border border-outline-variant/60 shadow-xl overflow-hidden relative cursor-crosshair transition-colors duration-300 flex flex-col justify-between p-5 md:p-8"
+            className="w-full relative max-w-[480px] aspect-[4/3.1] rounded-3xl border border-slate-200/60 bg-white/40 shadow-2xl shadow-slate-100 backdrop-blur-md overflow-hidden flex flex-col group/mockup"
           >
-            {/* Design Spec Mode layer (balance 0 => highly visible) */}
-            <div
-              className="absolute inset-0 pointer-events-none transition-opacity duration-200"
-              style={{ opacity: Math.max(0, 1 - balance / 50) }}
-            >
-              {/* Grid overlay */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#dfdfe7_1px,transparent_1px),linear-gradient(to_bottom,#dfdfe7_1px,transparent_1px)] bg-[size:16px_16px] opacity-10" />
-              <div className="absolute inset-0 border-[0.5px] border-dashed border-primary/40 m-4 rounded-xl flex flex-col justify-between p-4">
-                <span className="absolute -top-1.5 left-4 bg-white px-1 text-[9px] font-mono text-primary font-bold">
-                  CONTAINER_GRID: w-320
-                </span>
-                <span className="absolute -bottom-1.5 right-4 bg-white px-1 text-[9px] font-mono text-primary font-bold">
-                  H-320px
-                </span>
-
-                {/* Bounding vector markers */}
-                <span className="w-1.5 h-1.5 bg-primary border border-white absolute -top-1 -left-1" />
-                <span className="w-1.5 h-1.5 bg-primary border border-white absolute -top-1 -right-1" />
-                <span className="w-1.5 h-1.5 bg-primary border border-white absolute -bottom-1 -left-1" />
-                <span className="w-1.5 h-1.5 bg-primary border border-white absolute -bottom-1 -right-1" />
-
-                {/* Center visual alignment lines */}
-                <div className="absolute left-1/2 top-4 bottom-4 border-l border-dashed border-primary/60 opacity-60" />
-                <div className="absolute top-1/2 left-4 right-4 border-t border-dashed border-primary/60 opacity-60" />
+            {/* Interactive Browser Top Bar */}
+            <div className="h-10 px-4 bg-slate-50/80 border-b border-slate-200/50 flex items-center justify-between z-20">
+              <div className="flex gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 shadow-sm" />
+                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80 shadow-sm" />
+                <span className="w-2.5 h-2.5 rounded-full bg-green-400/80 shadow-sm" />
               </div>
+              <div className="bg-white/80 border border-slate-200/40 px-5 py-0.5 rounded-md text-[9px] font-mono text-neutral-muted w-44 text-center truncate select-none shadow-sm flex items-center justify-center gap-1.5">
+                <span className="w-1 h-1 bg-[#06B6D4] rounded-full animate-ping" />
+                chaitali.dev/stack
+              </div>
+              <RotateCcw size={11} className="text-slate-400" />
             </div>
 
-            {/* Code Output Terminal Mode (balance 100 => highly visible) */}
-            <div
-              className="absolute inset-0 pointer-events-none transition-opacity duration-200 bg-slate-900"
-              style={{ 
-                opacity: Math.max(0, (balance - 50) / 50),
-                zIndex: balance > 50 ? 20 : 0 
-              }}
-            >
-              <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-                <div className="flex gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                </div>
-                <span className="text-[10px] font-mono text-white/40">node server.js</span>
-              </div>
-              <div className="p-4 font-mono text-[11px] text-emerald-400 space-y-2 overflow-hidden h-[calc(100%-36px)]">
-                <p className="text-white/40">&gt;&gt; npm run test:perf</p>
-                <div className="text-slate-200">
-                  <p>✔ src/App.test.tsx (4.2s)</p>
-                  <p className="text-emerald-400">✔ 18 assets optimized successfully.</p>
-                </div>
-                <p className="text-sky-400">FPS: 60.00 | Thread: Idle</p>
-                <p className="text-amber-400">Lighthouse performance: 100%</p>
-                <p className="text-white/20">Vitals: CLS: 0.00, FID: 1.2ms</p>
-              </div>
-            </div>
+            {/* Browser Content Area (Three Infinite Scrolling Marquee Columns) */}
+            <div className="flex-grow relative overflow-hidden p-4 grid grid-cols-3 gap-3 bg-white/30 z-10">
+              {/* Fade overlays at top and bottom */}
+              <div className="absolute top-0 inset-x-0 h-10 bg-gradient-to-b from-[#F8FAFC]/95 to-transparent pointer-events-none z-20" />
+              <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#F8FAFC]/95 to-transparent pointer-events-none z-20" />
 
-            {/* Standard Visual Showcase Panel Content */}
-            <div 
-              className="relative z-10 w-full flex-grow flex flex-col justify-between transition-opacity duration-200" 
-              style={{ 
-                opacity: balance > 50 ? Math.max(0, 1 - (balance - 50) / 40) : 1,
-                pointerEvents: balance > 90 ? 'none' : 'auto',
-                transform: 'translateZ(10px)' 
-              }}
-            >
-              <div className="flex justify-between items-start">
-                <div className="space-y-1">
-                  <p className="text-[10px] font-mono text-neutral-muted uppercase tracking-wider">Workspace Live</p>
-                  <h4 className="font-display font-bold text-lg text-neutral-dark">React Context Engine</h4>
-                </div>
-                <div className="p-2 bg-primary/10 rounded-lg text-primary">
-                  {balance < 50 ? <Layout size={18} /> : <Code size={18} />}
+              {/* Column 1: Scrolls Up */}
+              <div className="h-full overflow-hidden relative flex flex-col">
+                <div className="flex flex-col gap-3 animate-marquee-up hover:[animation-play-state:paused]">
+                  {[...col1Tech, ...col1Tech].map((tech, idx) => {
+                    const IconComp = tech.Icon;
+                    return (
+                      <div
+                        key={`col1-${tech.name}-${idx}`}
+                        className="p-3 rounded-xl border border-slate-200/50 bg-white shadow-sm flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-300 hover:border-[#06B6D4] hover:shadow-md hover:scale-[1.03] select-none cursor-default"
+                      >
+                        <IconComp size={22} style={{ color: tech.color }} />
+                        <span className="text-[10px] font-bold text-[#0F172A] truncate w-full">{tech.name}</span>
+                        <span className="text-[7px] font-mono font-semibold tracking-wider uppercase text-neutral-muted px-1 py-0.5 rounded bg-slate-50 border border-slate-100">{tech.cat}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Central morphing shape container */}
-              <div className="flex items-center justify-center my-4 h-[120px] relative">
-                <motion.div
-                  animate={{
-                    borderRadius: balance < 35 
-                      ? '50% 10% 50% 10%' 
-                      : balance > 65 
-                        ? '4px' 
-                        : '12px',
-                    rotate: balance * 1.8,
-                    scale: isHovered ? 1.05 : 1,
-                  }}
-                  transition={{ type: 'spring', stiffness: 100, damping: 18 }}
-                  className="w-24 h-24 bg-gradient-to-tr from-primary-hover to-primary shadow-lg flex items-center justify-center text-white"
-                >
-                  {balance < 45 && <Layout size={28} className="animate-pulse" />}
-                  {balance >= 45 && balance <= 55 && (
-                    <Sparkles size={28} className="text-white/90" />
-                  )}
-                  {balance > 55 && <Code size={28} />}
-                </motion.div>
-                
-                {/* Visual coordinate indicator (Design spec element) */}
-                {balance < 35 && (
-                  <span className="absolute bottom-0 text-[10px] font-mono text-primary bg-white px-1.5 py-0.5 rounded shadow">
-                    R: {balance}deg
-                  </span>
-                )}
+              {/* Column 2: Scrolls Down */}
+              <div className="h-full overflow-hidden relative flex flex-col">
+                <div className="flex flex-col gap-3 animate-marquee-down hover:[animation-play-state:paused]">
+                  {[...col2Tech, ...col2Tech].map((tech, idx) => {
+                    const IconComp = tech.Icon;
+                    return (
+                      <div
+                        key={`col2-${tech.name}-${idx}`}
+                        className="p-3 rounded-xl border border-slate-200/50 bg-white shadow-sm flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-300 hover:border-[#06B6D4] hover:shadow-md hover:scale-[1.03] select-none cursor-default"
+                      >
+                        <IconComp size={22} style={{ color: tech.color }} />
+                        <span className="text-[10px] font-bold text-[#0F172A] truncate w-full">{tech.name}</span>
+                        <span className="text-[7px] font-mono font-semibold tracking-wider uppercase text-neutral-muted px-1 py-0.5 rounded bg-slate-50 border border-slate-100">{tech.cat}</span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
-              {/* Lower info block */}
-              <div className="flex justify-between items-center bg-surface-bg p-3 rounded-xl border border-outline-variant">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  <span className="text-[11px] font-sans text-neutral-muted font-medium">Auto compilation static bundle</span>
+              {/* Column 3: Scrolls Up Slow */}
+              <div className="h-full overflow-hidden relative flex flex-col">
+                <div className="flex flex-col gap-3 animate-marquee-up-slow hover:[animation-play-state:paused]">
+                  {[...col3Tech, ...col3Tech].map((tech, idx) => {
+                    const IconComp = tech.Icon;
+                    return (
+                      <div
+                        key={`col3-${tech.name}-${idx}`}
+                        className="p-3 rounded-xl border border-slate-200/50 bg-white shadow-sm flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-300 hover:border-[#06B6D4] hover:shadow-md hover:scale-[1.03] select-none cursor-default"
+                      >
+                        <IconComp size={22} style={{ color: tech.color }} />
+                        <span className="text-[10px] font-bold text-[#0F172A] truncate w-full">{tech.name}</span>
+                        <span className="text-[7px] font-mono font-semibold tracking-wider uppercase text-neutral-muted px-1 py-0.5 rounded bg-slate-50 border border-slate-100">{tech.cat}</span>
+                      </div>
+                    );
+                  })}
                 </div>
-                <span className="text-[11px] font-mono text-neutral-dark font-medium">C: {(100 - balance).toFixed(0)}%</span>
               </div>
             </div>
           </motion.div>
-
-          {/* Balance Slider Box (hidden on mobile) */}
-          <div className="hidden xl:block w-full max-w-[340px] space-y-2 mt-1">
-            <div className="flex justify-between items-center text-[10px] font-mono text-neutral-muted mb-7">
-              <span className={`transition-colors font-semibold ${isDesignPrimary ? 'text-primary' : ''}`}>
-                🎨 0% Design
-              </span>
-              <span className={`transition-colors font-semibold ${isOptimalHarmony ? 'text-primary' : ''}`}>
-                ✨ 50-50 Balance
-              </span>
-              <span className={`transition-colors font-semibold ${isEngineeringPrimary ? 'text-primary' : ''}`}>
-                ⚡ 100% Code
-              </span>
-            </div>
-            <div className="relative flex items-center">
-              <input
-                id="hero-balance-slider"
-                type="range"
-                min="0"
-                max="100"
-                value={balance}
-                onChange={(e) => setBalance(Number(e.target.value))}
-                className="w-full h-1.5 bg-outline-variant rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
-              />
-              <span
-                className="absolute top-1/2 -translate-y-1/2 pointer-events-none uppercase text-[9px] font-bold text-neutral-muted px-1"
-                style={{
-                  left: `calc(${balance}% + (${10 - balance * 0.2}px))`,
-                  transform: 'translate(-50%, -18px)',
-                }}
-              >
-                {balance}%
-              </span>
-            </div>
-            <p className="text-[11px] font-mono text-neutral-muted text-center pt-2 italic">
-              {isDesignPrimary && '👉 Preview style guides & bounding layout dimensions.'}
-              {isOptimalHarmony && '🎁 Balanced mode: A blend of visual focus and runtime clean code.'}
-              {isEngineeringPrimary && '👉 Inspect live unit-test console output.'}
-            </p>
-          </div>
         </div>
       </div>
     </section>

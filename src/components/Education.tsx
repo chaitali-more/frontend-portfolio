@@ -19,7 +19,7 @@ export default function Education() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(99,87,220,0.06) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(15,23,42,0.04) 0%, transparent 70%)',
         }}
       />
 
@@ -27,13 +27,13 @@ export default function Education() {
       <div
         className="absolute top-0 right-0 w-72 h-72 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 100% 0%, rgba(192,132,252,0.08) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 100% 0%, rgba(6,182,212,0.06) 0%, transparent 60%)',
         }}
       />
       <div
         className="absolute bottom-0 left-0 w-72 h-72 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 0% 100%, rgba(99,87,220,0.07) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 0% 100%, rgba(15,23,42,0.05) 0%, transparent 60%)',
         }}
       />
 
@@ -45,8 +45,7 @@ export default function Education() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-[11px] font-bold tracking-[0.2em] uppercase font-sans"
-            style={{ color: 'rgba(99,87,220,0.7)' }}>
+          <p className="text-[11px] font-bold tracking-[0.2em] uppercase font-sans text-neutral-dark">
             Education
           </p>
         </motion.div>
@@ -56,13 +55,19 @@ export default function Education() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
-          whileHover={{ y: -3, transition: { duration: 0.2 } }}
+          whileHover={{ 
+            y: -4, 
+            borderColor: 'rgba(6, 182, 212, 0.4)',
+            boxShadow: '0 0 0 1px rgba(6,182,212,0.2), 0 12px 36px rgba(6,182,212,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+          }}
           className="group transition-all flex flex-col md:flex-row md:justify-between items-start md:items-center gap-6 p-6 md:p-8 rounded-2xl"
           style={{
             background: '#ffffff',
-            border: '1px solid rgba(99,87,220,0.18)',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: 'rgba(15,23,42,0.12)',
             boxShadow:
-              '0 0 0 1px rgba(99,87,220,0.08), 0 8px 32px rgba(99,87,220,0.10), 0 2px 8px rgba(0,0,0,0.05)',
+              '0 0 0 1px rgba(15,23,42,0.08), 0 8px 32px rgba(15,23,42,0.05), 0 2px 8px rgba(0,0,0,0.05)',
           }}
         >
           {/* Left — icon + degree info */}
@@ -70,8 +75,8 @@ export default function Education() {
             <div
               className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 transition-colors"
               style={{
-                background: 'rgba(99,87,220,0.08)',
-                color: '#6357dc',
+                background: 'rgba(6,182,212,0.08)',
+                color: '#06B6D4',
               }}
             >
               <GraduationCap size={28} />
@@ -79,7 +84,7 @@ export default function Education() {
             <div>
               <h3
                 className="font-display font-bold text-lg md:text-xl"
-                style={{ color: '#1a1a2e' }}
+                style={{ color: '#0F172A' }}
               >
                 B.Tech in Computer Science and Engineering (CSE)
               </h3>
@@ -95,9 +100,9 @@ export default function Education() {
             <div
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold"
               style={{
-                background: 'rgba(99,87,220,0.08)',
-                border: '1px solid rgba(99,87,220,0.2)',
-                color: '#6357dc',
+                background: 'rgba(6,182,212,0.08)',
+                border: '1px solid rgba(6,182,212,0.2)',
+                color: '#06B6D4',
               }}
             >
               <Star size={12} fill="currentColor" />
@@ -108,12 +113,12 @@ export default function Education() {
             <div
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold"
               style={{
-                background: '#f8f8ff',
-                border: '1px solid rgba(99,87,220,0.15)',
-                color: '#1a1a2e',
+                background: '#ffffff',
+                border: '1px solid rgba(15,23,42,0.15)',
+                color: '#0F172A',
               }}
             >
-              <Calendar size={13} style={{ color: '#6357dc' }} />
+              <Calendar size={13} style={{ color: '#06B6D4' }} />
               <span>2017 - 2021</span>
             </div>
 
@@ -121,9 +126,9 @@ export default function Education() {
             <div
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold"
               style={{
-                background: 'rgba(99,87,220,0.08)',
-                border: '1px solid rgba(99,87,220,0.2)',
-                color: '#6357dc',
+                background: 'rgba(6,182,212,0.08)',
+                border: '1px solid rgba(6,182,212,0.2)',
+                color: '#06B6D4',
               }}
             >
               <span>4 Years</span>

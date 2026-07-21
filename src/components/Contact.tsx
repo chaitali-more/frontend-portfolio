@@ -21,9 +21,9 @@ export default function Contact() {
           className="rounded-3xl text-center relative overflow-hidden"
           style={{
             background: '#ffffff',
-            border: '1px solid rgba(99, 87, 220, 0.18)',
+            border: '1px solid rgba(15, 23, 42, 0.15)',
             boxShadow:
-              '0 0 0 1px rgba(99,87,220,0.08), 0 20px 60px rgba(99,87,220,0.10), 0 4px 16px rgba(0,0,0,0.06)',
+              '0 0 0 1px rgba(15,23,42,0.08), 0 20px 60px rgba(15,23,42,0.06), 0 4px 16px rgba(0,0,0,0.06)',
             padding: '4rem 2rem',
           }}
         >
@@ -32,7 +32,7 @@ export default function Contact() {
             className="absolute inset-0 pointer-events-none"
             style={{
               backgroundImage:
-                'linear-gradient(to right, rgba(99,87,220,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(99,87,220,0.07) 1px, transparent 1px)',
+                'linear-gradient(to right, rgba(15,23,42,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.05) 1px, transparent 1px)',
               backgroundSize: '28px 28px',
             }}
           />
@@ -42,7 +42,7 @@ export default function Contact() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(99,87,220,0.06) 0%, transparent 70%)',
+                'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(15,23,42,0.04) 0%, transparent 70%)',
             }}
           />
 
@@ -51,14 +51,14 @@ export default function Contact() {
             className="absolute top-0 right-0 w-72 h-72 pointer-events-none"
             style={{
               background:
-                'radial-gradient(circle at 100% 0%, rgba(192,132,252,0.08) 0%, transparent 60%)',
+                'radial-gradient(circle at 100% 0%, rgba(6,182,212,0.06) 0%, transparent 60%)',
             }}
           />
           <div
             className="absolute bottom-0 left-0 w-72 h-72 pointer-events-none"
             style={{
               background:
-                'radial-gradient(circle at 0% 100%, rgba(99,87,220,0.07) 0%, transparent 60%)',
+                'radial-gradient(circle at 0% 100%, rgba(15,23,42,0.05) 0%, transparent 60%)',
             }}
           />
 
@@ -70,7 +70,7 @@ export default function Contact() {
           >
             <h2
               className="font-display text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tighter"
-              style={{ color: '#1a1a2e' }}
+              style={{ color: '#0F172A' }}
             >
               Let&apos;s Build Something{' '} <br/>
               <span className='text-primary'
@@ -88,7 +88,7 @@ export default function Contact() {
               <a
                 id="email-me-link"
                 href="mailto:chaitalicoding@gmail.com"
-                className="group relative overflow-hidden bg-primary hover:bg-primary-hover text-white px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex items-center gap-2"
+                className="group relative overflow-hidden bg-[#0F172A] hover:bg-[#06B6D4] text-white px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide shadow-lg shadow-[#0F172A]/10 hover:shadow-xl hover:shadow-[#06B6D4]/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex items-center gap-2"
               >
                 <FaEnvelope size={18} />
                 Email Me
@@ -98,12 +98,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/chaitali-more/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-                style={{
-                  background: '#ffffff',
-                  border: '1px solid rgba(99,87,220,0.25)',
-                  color: '#6357dc',
-                }}
+                className="flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide border border-slate-200 hover:border-[#06B6D4] hover:text-[#06B6D4] bg-white text-[#0F172A] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md cursor-pointer"
               >
                 <FaLinkedin size={18} />
                 LinkedIn

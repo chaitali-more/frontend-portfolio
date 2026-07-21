@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Download, Code2 } from 'lucide-react';
 import resumePdf from '../assets/pdf/chaitali-more-resume.pdf';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   activeSection: string;
 }
 
 export default function Header({ activeSection }: HeaderProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
@@ -36,13 +39,24 @@ export default function Header({ activeSection }: HeaderProps) {
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Contact', href: '#contact' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
+
+    if (href.startsWith('/')) {
+      navigate(href);
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate(`/${href}`);
+      return;
+    }
+
     const target = href === '#' ? null : document.querySelector(href);
 
     if (href === '#') {
@@ -63,13 +77,13 @@ export default function Header({ activeSection }: HeaderProps) {
         className={`fixed left-0 right-0 z-40 transition-all duration-500 ease-out border-b ${
           isScrolled
             ? 'top-4 max-w-6xl mx-auto px-4 md:px-6 bg-transparent border-transparent'
-            : 'top-0 w-full bg-white/60 backdrop-blur-md border-indigo-100 px-6 md:px-12'
+            : 'top-0 w-full bg-white/60 backdrop-blur-md border-slate-100 px-6 md:px-12'
         }`}
       >
         <div
           className={`mx-auto transition-all duration-500 ease-out flex items-center justify-between w-full border ${
             isScrolled
-              ? 'bg-white/85 backdrop-blur-md border-indigo-100 rounded-2xl shadow-lg shadow-primary/5 px-6 h-14'
+              ? 'bg-white/85 backdrop-blur-md border-slate-100 rounded-2xl shadow-lg shadow-primary/5 px-6 h-14'
               : 'bg-transparent border-transparent rounded-2xl lg:px-6 h-20 max-w-7xl'
           }`}
         >
@@ -105,26 +119,26 @@ export default function Header({ activeSection }: HeaderProps) {
                   onClick={(e) => handleLinkClick(e, link.href)}
                   className={`text-xs font-sans font-semibold tracking-wider uppercase transition-colors duration-200 relative py-2 px-3.5 rounded-lg ${
                     activeSection === link.name.toLowerCase()
-                      ? 'text-primary'
-                      : 'text-neutral-muted hover:text-neutral-dark hover:bg-neutral-dark/5'
+                      ? 'text-[#06B6D4]'
+                      : 'text-neutral-muted hover:text-[#06B6D4] hover:bg-[#06B6D4]/5'
                   }`}
                 >
                   {link.name}
                   {activeSection === link.name.toLowerCase() && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute inset-0 bg-primary/5 border border-primary/10 rounded-lg -z-10"
+                      className="absolute inset-0 bg-[#06B6D4]/5 border border-[#06B6D4]/10 rounded-lg -z-10"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
                 </a>
               ))}
             </div>
-            <div className="w-[1px] h-6 bg-indigo-100" />
+            <div className="w-[1px] h-6 bg-[#0F172A]/20" />
             <button
               id="resume-btn"
               onClick={() => setShowResumeModal(true)}
-              className="group relative overflow-hidden bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer"
+              className="group relative overflow-hidden bg-[#0F172A] hover:bg-[#06B6D4] text-white px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0F172A]/10 hover:shadow-lg hover:shadow-[#06B6D4]/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer"
             >
               <span className="relative z-10 flex items-center gap-2">Resume</span>
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
@@ -135,7 +149,7 @@ export default function Header({ activeSection }: HeaderProps) {
           <button
             id="mobile-menu-trigger"
             onClick={() => setIsOpen(true)}
-            className="md:hidden text-neutral-dark hover:text-primary transition-colors focus:outline-none cursor-pointer p-1.5 rounded-lg hover:bg-neutral-dark/5"
+            className="md:hidden text-neutral-dark hover:text-[#06B6D4] transition-colors focus:outline-none cursor-pointer p-1.5 rounded-lg hover:bg-[#06B6D4]/5"
             aria-label="Open Menu"
           >
             <Menu size={22} />
@@ -168,7 +182,7 @@ export default function Header({ activeSection }: HeaderProps) {
               className="fixed top-0 right-0 bottom-0 z-50 w-[78vw] max-w-xs bg-white shadow-2xl flex flex-col md:hidden"
             >
               {/* Drawer Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-indigo-50">
+              <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
                   <div className="relative w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-primary-hover flex items-center justify-center text-white shadow-md shadow-primary/20">
                     <Code2 size={15} className="stroke-[2.5]" />
@@ -207,15 +221,15 @@ export default function Header({ activeSection }: HeaderProps) {
                       transition={{ delay: 0.05 + i * 0.055, duration: 0.25 }}
                       className={`flex items-center gap-3 text-sm font-sans font-semibold tracking-wide py-3 px-4 rounded-lg transition-all duration-200 ${
                         activeSection === link.name.toLowerCase()
-                          ? 'text-primary bg-primary/8 border-l-[3px] border-primary pl-3.5'
-                          : 'text-neutral-muted hover:text-neutral-dark hover:bg-neutral-dark/5'
+                          ? 'text-[#06B6D4] bg-[#06B6D4]/8 border-l-[3px] border-[#06B6D4] pl-3.5'
+                          : 'text-neutral-muted hover:text-[#06B6D4] hover:bg-[#06B6D4]/5'
                       }`}
                     >
                       {/* Active dot indicator */}
                       <span
                         className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${
                           activeSection === link.name.toLowerCase()
-                            ? 'bg-primary'
+                            ? 'bg-[#06B6D4]'
                             : 'bg-neutral-dark/20'
                         }`}
                       />
@@ -227,7 +241,7 @@ export default function Header({ activeSection }: HeaderProps) {
               </nav>
 
               {/* Drawer Footer – Resume CTA */}
-              <div className="px-4 py-5 border-t border-indigo-50">
+              <div className="px-4 py-5 border-t border-slate-100">
                 <motion.button
                   id="mobile-resume-btn"
                   onClick={() => {
@@ -237,7 +251,7 @@ export default function Header({ activeSection }: HeaderProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="w-full group relative overflow-hidden bg-primary hover:bg-primary-hover text-white py-3.5 rounded-xl font-bold tracking-wider uppercase text-xs cursor-pointer transition-all duration-300 shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                  className="w-full group relative overflow-hidden bg-[#0F172A] hover:bg-[#06B6D4] text-white py-3.5 rounded-xl font-bold tracking-wider uppercase text-xs cursor-pointer transition-all duration-300 shadow-lg shadow-[#0F172A]/10 flex items-center justify-center gap-2"
                 >
                   <FileText size={15} />
                   View Resume
@@ -297,16 +311,16 @@ export default function Header({ activeSection }: HeaderProps) {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => setShowResumeModal(false)}
-                  className="flex items-center justify-between p-4 bg-primary/5 hover:bg-primary/10 rounded-xl transition-all duration-200 text-neutral-dark group cursor-pointer text-left"
+                  className="flex items-center justify-between p-4 bg-[#06B6D4]/5 hover:bg-[#06B6D4]/10 rounded-xl transition-all duration-200 text-neutral-dark group cursor-pointer text-left"
                 >
                   <div className="flex items-center gap-3">
-                    <Download className="text-primary" size={20} />
+                    <Download className="text-[#06B6D4]" size={20} />
                     <div>
                       <h4 className="font-sans font-semibold text-sm">Download Resume</h4>
                       <p className="text-xs text-neutral-muted">Explore my professional background and expertise.</p>
                     </div>
                   </div>
-                  <Download size={16} className="text-neutral-muted group-hover:text-primary transition-colors" />
+                  <Download size={16} className="text-neutral-muted group-hover:text-[#06B6D4] transition-colors" />
                 </a>
               </div>
 

@@ -26,8 +26,8 @@ const sitemapSections = [
   },
   {
     label: 'Projects',
-    href: '/#projects',
-    description: 'Selected work with demos, source links, and project details.',
+    href: '/projects',
+    description: 'All work with interactive demos, source code links, and category filters.',
   },
   {
     label: 'Education',
@@ -58,7 +58,7 @@ function RouteActionLink({
         to={to}
         className={`inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 ${
           subtle
-            ? 'border border-indigo-100 bg-white/80 text-neutral-dark hover:border-primary/20 hover:text-primary'
+            ? 'border border-slate-100 bg-white/80 text-neutral-dark hover:border-primary/20 hover:text-primary'
             : 'bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary-hover'
         }`}
       >
@@ -82,7 +82,7 @@ function SectionCard({
     <motion.div whileHover={{ y: -4 }} whileTap={{ scale: 0.99 }}>
       <Link
         to={href}
-        className="group block w-full rounded-2xl border border-indigo-100 bg-white/85 p-5 text-left shadow-sm shadow-primary/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10"
+        className="group block w-full rounded-2xl border border-slate-100 bg-white/85 p-5 text-left shadow-sm shadow-primary/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10"
       >
         <div className="flex items-start justify-between gap-4">
           <div>

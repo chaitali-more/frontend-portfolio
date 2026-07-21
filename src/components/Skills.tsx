@@ -4,26 +4,26 @@ import { skillCategories } from '../data';
 import { Award, Layers, Hammer, Sparkles } from 'lucide-react';
 
 const columnIcons: Record<string, React.ReactNode> = {
-  Core: <Award className="text-primary" size={20} />,
-  Frameworks: <Layers className="text-primary" size={20} />,
-  Tools: <Hammer className="text-primary" size={20} />,
+  Core: <Award className="text-[#06B6D4]" size={20} />,
+  Frameworks: <Layers className="text-[#06B6D4]" size={20} />,
+  Tools: <Hammer className="text-[#06B6D4]" size={20} />,
 };
 
 const columnColors: Record<string, { bg: string; text: string; dot: string }> = {
   Core: {
-    bg: 'bg-primary-container border-outline-variant hover:bg-primary/10',
-    text: 'text-primary',
-    dot: 'bg-primary',
+    bg: 'bg-white border-slate-200/60 hover:border-[#06B6D4] hover:bg-[#06B6D4]/5 hover:text-[#06B6D4] hover:shadow-sm',
+    text: 'text-[#0F172A]',
+    dot: 'bg-[#06B6D4]',
   },
   Frameworks: {
-    bg: 'bg-primary-container border-outline-variant hover:bg-primary/10',
-    text: 'text-primary',
-    dot: 'bg-primary',
+    bg: 'bg-white border-slate-200/60 hover:border-[#06B6D4] hover:bg-[#06B6D4]/5 hover:text-[#06B6D4] hover:shadow-sm',
+    text: 'text-[#0F172A]',
+    dot: 'bg-[#06B6D4]',
   },
   Tools: {
-    bg: 'bg-surface-bg border-outline-variant hover:bg-primary-container',
-    text: 'text-neutral-dark',
-    dot: 'bg-primary',
+    bg: 'bg-white border-slate-200/60 hover:border-[#06B6D4] hover:bg-[#06B6D4]/5 hover:text-[#06B6D4] hover:shadow-sm',
+    text: 'text-[#0F172A]',
+    dot: 'bg-[#06B6D4]',
   },
 };
 
@@ -37,7 +37,16 @@ export default function Skills() {
       ref={containerRef}
       className="py-24 border-t border-outline-variant/30 bg-surface-bg/30 relative"
     >
-      <div className="max-w-7xl mx-auto px-6 scroll-reveal">
+      {/* Same radial glow as Contact */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(15,23,42,0.04) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 scroll-reveal relative z-10">
         {/* Section Label */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -62,11 +71,11 @@ export default function Skills() {
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 pb-3 border-b border-outline-variant/50">
-                <span className="p-2 bg-primary-container border border-outline-variant rounded-lg shadow-sm">
+                <span className="p-2 bg-white border border-slate-200/60 rounded-lg shadow-sm flex items-center justify-center">
                   {columnIcons[category.title] || <Award size={18} />}
                 </span>
 
-                <h3 className="font-display font-semibold text-xl text-neutral-dark">
+                <h3 className="font-display font-semibold text-xl text-[#0F172A]">
                   {category.title}
                 </h3>
               </div>
@@ -75,9 +84,9 @@ export default function Skills() {
               <div className="flex flex-wrap gap-2.5">
                 {category.skills.map((skill) => {
                   const styleRef = columnColors[category.title] || {
-                    bg: 'bg-neutral-50 border-neutral-100',
-                    text: 'text-neutral-700',
-                    dot: 'bg-neutral-400',
+                    bg: 'bg-white border-slate-200/60',
+                    text: 'text-[#0F172A]',
+                    dot: 'bg-[#06B6D4]',
                   };
 
                   return (
@@ -97,7 +106,7 @@ export default function Skills() {
                         text-sm font-medium
                         transition-all duration-300
                         hover:shadow-md
-                        cursor-help
+                        cursor-pointer
                         ${styleRef.bg}
                         ${styleRef.text}
                       `}
@@ -119,17 +128,16 @@ export default function Skills() {
           initial={{ opacity: 0, x: -20 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 border-l-4 border-primary pl-5 py-3 pr-4 flex items-center gap-2.5 bg-primary-container rounded-r-xl max-w-4xl"
+          className="mt-16 border-l-4 border-[#06B6D4] pl-5 py-3 pr-4 flex items-center gap-2.5 bg-[#06B6D4]/5 rounded-r-xl max-w-4xl"
         >
           <Sparkles
             size={16}
-            className="text-primary animate-pulse flex-shrink-0"
+            className="text-[#06B6D4] animate-pulse flex-shrink-0"
           />
 
-          <p className="italic text-neutral-dark text-sm md:text-base font-light">
-    Building modern web experiences while exploring the intersection of front-end development and AI.
-
-</p>
+          <p className="italic text-[#0F172A] text-sm md:text-base font-light">
+            Building modern web experiences while exploring the intersection of front-end development and AI.
+          </p>
         </motion.div>
       </div>
     </section>
