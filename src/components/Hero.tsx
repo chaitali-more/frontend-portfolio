@@ -72,6 +72,14 @@ export default function Hero() {
   const rotateX = useSpring(useTransform(mouseY, [-300, 300], [6, -6]), { damping: 25, stiffness: 120 });
   const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-6, 6]), { damping: 25, stiffness: 120 });
 
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (heroRef.current && e.touches[0]) {
+      const rect = heroRef.current.getBoundingClientRect();
+      spotX.set(e.touches[0].clientX - rect.left);
+      spotY.set(e.touches[0].clientY - rect.top);
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (heroRef.current) {
       const rect = heroRef.current.getBoundingClientRect();
@@ -97,84 +105,96 @@ export default function Hero() {
       id="hero"
       ref={heroRef}
       onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
       onMouseLeave={handleMouseLeave}
       className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-[#F8FAFC] overflow-hidden border-b border-slate-100 flex flex-col justify-center min-h-[92vh] md:min-h-screen"
     >
-      {/* Subtle blue/cyan radial gradient base */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100/40 via-[#F8FAFC] to-[#F8FAFC]" />
-
-      {/* Floating Ambient Mesh Glow Orbs */}
+      {/* ── 1. Animated Glowing Gradient Orbs (Vibrant & Visible on Mobile + Desktop) ── */}
       <motion.div
         animate={{
-          x: [0, 35, -25, 0],
-          y: [0, -30, 20, 0],
-          scale: [1, 1.18, 0.95, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-[8%] left-[12%] w-[480px] h-[480px] bg-gradient-to-tr from-[#06B6D4]/15 via-sky-300/10 to-transparent rounded-full blur-[100px] pointer-events-none"
-      />
-
-      <motion.div
-        animate={{
-          x: [0, -40, 30, 0],
-          y: [0, 35, -25, 0],
-          scale: [1, 0.92, 1.15, 1],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute bottom-[10%] right-[10%] w-[460px] h-[460px] bg-gradient-to-br from-[#0F172A]/10 via-[#06B6D4]/12 to-cyan-200/10 rounded-full blur-[110px] pointer-events-none"
-      />
-
-      <motion.div
-        animate={{
-          scale: [1, 1.25, 1],
-          opacity: [0.08, 0.2, 0.08],
+          x: [0, 45, -35, 0],
+          y: [0, -40, 25, 0],
+          scale: [1, 1.25, 0.9, 1],
         }}
         transition={{
           duration: 14,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute top-[35%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-r from-cyan-200/15 via-blue-100/10 to-slate-200/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute -top-10 left-[5%] sm:left-[10%] w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] bg-gradient-to-tr from-[#06B6D4]/30 via-[#38BDF8]/25 to-transparent rounded-full blur-2xl sm:blur-3xl pointer-events-none z-0 opacity-80"
       />
 
-      {/* Interactive Cursor Spotlight Glow */}
       <motion.div
-        className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full opacity-60 blur-3xl hidden lg:block"
+        animate={{
+          x: [0, -50, 40, 0],
+          y: [0, 45, -30, 0],
+          scale: [1, 0.85, 1.2, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute bottom-[5%] right-[5%] sm:right-[10%] w-[300px] sm:w-[480px] h-[300px] sm:h-[480px] bg-gradient-to-br from-[#6366F1]/20 via-[#06B6D4]/25 to-sky-300/20 rounded-full blur-2xl sm:blur-3xl pointer-events-none z-0 opacity-80"
+      />
+
+      <motion.div
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.25, 0.5, 0.25],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-radial from-[#06B6D4]/20 via-cyan-100/30 to-transparent rounded-full blur-3xl pointer-events-none z-0"
+      />
+
+      {/* ── 2. Interactive Spotlight Glow (Mobile Touch & Desktop Cursor) ── */}
+      <motion.div
+        className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[550px] h-[350px] sm:h-[550px] rounded-full blur-2xl z-0"
         style={{
           left: spotX,
           top: spotY,
-          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(15, 23, 42, 0.03) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(99, 102, 241, 0.12) 40%, transparent 70%)',
         }}
       />
 
-      {/* Very light dotted grid overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+      {/* ── 3. Dotted Grid Overlay with Subtle Contrast ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-70 pointer-events-none z-0" />
 
-      {/* Ambient floating tech floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden lg:block">
+      {/* ── 4. Animated Laser Beam Sweeping Down the Background Grid ── */}
+      <motion.div
+        animate={{
+          top: ['-10%', '110%'],
+          opacity: [0, 0.85, 0.85, 0],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#06B6D4] to-transparent shadow-[0_0_15px_#06B6D4] pointer-events-none z-0"
+      />
+
+      {/* ── 5. Ambient Floating Glassmorphic Tech Pills (Visible on Mobile & Desktop) ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         {[
-          { symbol: '</>', left: '10%', top: '22%', duration: 16, delay: 0 },
-          { symbol: '{ }', left: '88%', top: '18%', duration: 20, delay: 2 },
-          { symbol: '=>', left: '82%', top: '74%', duration: 18, delay: 4 },
-          { symbol: 'React.js', left: '15%', top: '78%', duration: 22, delay: 1 },
-          { symbol: 'Next.js', left: '46%', top: '14%', duration: 24, delay: 3 },
+          { label: '</> React', left: '4%', top: '18%', duration: 12, delay: 0 },
+          { label: '{ } Next.js', left: '76%', top: '14%', duration: 15, delay: 1.5 },
+          { label: '⚡ Fast UI', left: '80%', top: '80%', duration: 14, delay: 3 },
+          { label: '✨ TypeScript', left: '5%', top: '82%', duration: 16, delay: 0.5 },
+          { label: '🚀 Responsive', left: '42%', top: '10%', duration: 13, delay: 2 },
         ].map((p, i) => (
           <motion.div
-            key={`hero-particle-${i}`}
-            initial={{ opacity: 0.15, y: 0 }}
+            key={`hero-floating-pill-${i}`}
+            initial={{ opacity: 0.7, y: 0 }}
             animate={{
-              y: [-12, 12, -12],
-              x: [-6, 6, -6],
-              opacity: [0.12, 0.32, 0.12],
-              scale: [0.95, 1.08, 0.95],
+              y: [-14, 14, -14],
+              x: [-8, 8, -8],
+              opacity: [0.75, 1, 0.75],
+              scale: [0.95, 1.05, 0.95],
             }}
             transition={{
               duration: p.duration,
@@ -182,10 +202,11 @@ export default function Hero() {
               ease: 'easeInOut',
               delay: p.delay,
             }}
-            className="absolute font-mono text-[11px] font-bold text-[#06B6D4]/50 select-none tracking-widest bg-white/40 backdrop-blur-[2px] px-2 py-0.5 rounded-md border border-[#06B6D4]/10 shadow-xs"
+            className="absolute font-mono text-[10px] sm:text-xs font-bold text-[#0F172A] select-none tracking-wider bg-white/80 border border-[#06B6D4]/30 shadow-md backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5"
             style={{ left: p.left, top: p.top }}
           >
-            {p.symbol}
+            <span className="w-2 h-2 rounded-full bg-[#06B6D4] animate-ping" />
+            <span>{p.label}</span>
           </motion.div>
         ))}
       </div>
