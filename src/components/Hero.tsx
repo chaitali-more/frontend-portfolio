@@ -164,14 +164,14 @@ export default function Hero() {
       {/* ── 3. Dotted Grid Overlay with Subtle Contrast ── */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-70 pointer-events-none z-0" />
 
-      {/* ── 5. Ambient Floating Glassmorphic Tech Pills (Visible on Mobile & Desktop) ── */}
+      {/* ── 5. Ambient Floating Glassmorphic Skill Pills (Visible on Mobile & Desktop) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         {[
-          { label: '</> React', left: '4%', top: '18%', duration: 12, delay: 0 },
-          { label: '{ } Next.js', left: '76%', top: '14%', duration: 15, delay: 1.5 },
-          { label: '⚡ Fast UI', left: '80%', top: '80%', duration: 14, delay: 3 },
-          { label: '✨ TypeScript', left: '5%', top: '82%', duration: 16, delay: 0.5 },
-          { label: '🚀 Responsive', left: '42%', top: '10%', duration: 13, delay: 2 },
+          { label: '✨ Pixel-Perfect UI', left: '4%', top: '18%', duration: 12, delay: 0 },
+          { label: '🚀 Responsive Design', left: '74%', top: '14%', duration: 15, delay: 1.5 },
+          { label: '⚡ Fast Performance', left: '78%', top: '80%', duration: 14, delay: 3 },
+          { label: '🎯 Clean Code', left: '5%', top: '82%', duration: 16, delay: 0.5 },
+          { label: '🎨 Seamless UX', left: '40%', top: '10%', duration: 13, delay: 2 },
         ].map((p, i) => (
           <motion.div
             key={`hero-floating-pill-${i}`}
