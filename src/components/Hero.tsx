@@ -164,20 +164,6 @@ export default function Hero() {
       {/* ── 3. Dotted Grid Overlay with Subtle Contrast ── */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-70 pointer-events-none z-0" />
 
-      {/* ── 4. Animated Laser Beam Sweeping Down the Background Grid ── */}
-      <motion.div
-        animate={{
-          top: ['-10%', '110%'],
-          opacity: [0, 0.85, 0.85, 0],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#06B6D4] to-transparent shadow-[0_0_15px_#06B6D4] pointer-events-none z-0"
-      />
-
       {/* ── 5. Ambient Floating Glassmorphic Tech Pills (Visible on Mobile & Desktop) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         {[
