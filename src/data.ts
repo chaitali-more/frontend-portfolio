@@ -20,9 +20,9 @@ export const stats: Stat[] = [
     description: 'Average turnaround communication response time for active projects.',
   },
   {
-    label: 'Core Tools',
-    value: '6+',
-    description: 'Core developer libraries and visual tools used on a daily basis.',
+    label: 'Technologies & Tools',
+    value: '15+',
+    description: 'Core developer libraries, frameworks, and visual tools used on a daily basis.',
   },
   {
     label: 'Responsive UI',

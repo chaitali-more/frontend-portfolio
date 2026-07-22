@@ -6,7 +6,8 @@ import { Award, Zap, Monitor, Sparkles } from 'lucide-react';
 const iconsMap: Record<string, React.ReactNode> = {
   '200+': <Award className="text-primary" size={20} />,
   '4+': <Zap className="text-primary" size={20} />,
-  '10+': <Monitor className="text-primary" size={20} />,
+  '15+': <Monitor className="text-primary" size={20} />,
+  'Technologies & Tools': <Monitor className="text-primary" size={20} />,
   '100%': <Sparkles className="text-primary" size={20} />,
 };
 
@@ -145,7 +146,8 @@ function StatCard({ stat, index, triggerInView }: StatCardProps) {
   const labels: Record<string, string> = {
     '200+': 'Projects',
     '4+': 'Years Exp',
-    '10+': 'Core Tools',
+    '15+': 'Tech & Tools',
+    'Technologies & Tools': 'Tech & Tools',
     '100%': 'Responsive UI',
   };
 
