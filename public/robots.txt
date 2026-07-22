@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.chaitalimore.in/sitemap.xml
-Sitemap: https://www.chaitali-more.in/sitemap.xml
