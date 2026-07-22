@@ -20,43 +20,43 @@ export default function Projects() {
       <section
         id="projects"
         ref={containerRef}
-        className="py-24 border-t border-outline-variant/30 bg-white"
+        className="py-12 md:py-24 border-t border-outline-variant/30 bg-white"
       >
-        <div className="max-w-7xl mx-auto px-6 scroll-reveal">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 mb-6 md:mb-12">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5 }}
-              className="space-y-4"
+              className="space-y-2 md:space-y-4"
             >
               <p className="text-[11px] font-bold text-neutral-muted tracking-[0.2em] uppercase font-sans">
                 Selected Work
               </p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-dark tracking-tight">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-dark tracking-tight">
                 Building solutions for the modern web.
               </h2>
             </motion.div>
           </div>
 
           {/* Project Cards */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <AnimatePresence mode="popLayout">
               {visibleProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
-                  className="group flex flex-col md:flex-row bg-white border border-outline-variant/60 rounded-2xl overflow-hidden shadow-sm hover:border-[#06B6D4] hover:shadow-lg hover:shadow-[#06B6D4]/5 transition-all duration-300"
+                  className="group flex flex-col md:flex-row bg-white border border-outline-variant/60 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:border-[#06B6D4] hover:shadow-lg hover:shadow-[#06B6D4]/5 transition-all duration-300"
                 >
                   {/* Video/Image Preview — click to open lightbox */}
-                  <div className="md:w-2/5 bg-[#F8FAFC] p-5 border-b md:border-b-0 md:border-r border-outline-variant/40">
+                  <div className="md:w-2/5 bg-[#F8FAFC] p-3.5 sm:p-5 border-b md:border-b-0 md:border-r border-outline-variant/40">
                     <div
-                      className="relative overflow-hidden rounded-xl border border-outline-variant bg-white shadow-xl cursor-pointer group/video"
+                      className="relative overflow-hidden rounded-lg sm:rounded-xl border border-outline-variant bg-white shadow-xl cursor-pointer group/video"
                       onClick={() =>
                         setActiveMedia({
                           url: project.videoUrl || project.imageUrl || '',
@@ -66,7 +66,7 @@ export default function Projects() {
                       }
                     >
                       {/* Fake browser chrome */}
-                      <div className="h-8 border-b bg-gray-50 flex items-center px-3 gap-1.5 select-none">
+                      <div className="h-7 sm:h-8 border-b bg-gray-50 flex items-center px-3 gap-1.5 select-none">
                         <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
                         <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
                         <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
@@ -92,11 +92,11 @@ export default function Projects() {
 
                       {/* Play / Zoom button overlay */}
                       <div className="absolute inset-0 top-8 flex items-center justify-center bg-neutral-dark/0 group-hover/video:bg-neutral-dark/30 transition-all duration-300">
-                        <div className="opacity-0 scale-90 group-hover/video:opacity-100 group-hover/video:scale-100 transition-all duration-300 w-14 h-14 bg-white/95 backdrop-blur-sm rounded-full border border-[#06B6D4]/10 shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform duration-200">
+                        <div className="opacity-0 scale-90 group-hover/video:opacity-100 group-hover/video:scale-100 transition-all duration-300 w-12 h-12 sm:w-14 sm:h-14 bg-white/95 backdrop-blur-sm rounded-full border border-[#06B6D4]/10 shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform duration-200">
                           {project.videoUrl ? (
-                            <Play size={20} className="text-[#06B6D4] fill-[#06B6D4]/10" />
+                            <Play size={18} className="text-[#06B6D4] fill-[#06B6D4]/10" />
                           ) : (
-                            <ExternalLink size={20} className="text-[#06B6D4]" />
+                            <ExternalLink size={18} className="text-[#06B6D4]" />
                           )}
                         </div>
                       </div>
@@ -104,9 +104,9 @@ export default function Projects() {
                   </div>
 
                   {/* Project Info */}
-                  <div className="p-8 md:p-10 flex flex-col justify-center flex-grow">
-                    <div className="space-y-4">
-                      <h3 className="font-display text-2xl md:text-3xl font-bold text-neutral-dark group-hover:text-[#06B6D4] transition-colors">
+                  <div className="p-5 sm:p-8 md:p-10 flex flex-col justify-center flex-grow">
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-neutral-dark group-hover:text-[#06B6D4] transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-sm md:text-base text-neutral-muted font-sans font-light leading-relaxed max-w-xl">

@@ -29,13 +29,13 @@ const columnColors: Record<string, { bg: string; text: string; dot: string }> = 
 
 export default function Skills() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.1 });
+  const isInView = useInView(containerRef, { once: true, amount: 0.05 });
 
   return (
     <section
       id="skills"
       ref={containerRef}
-      className="py-24 border-t border-outline-variant/30 bg-surface-bg/30 relative"
+      className="py-12 md:py-24 border-t border-outline-variant/30 bg-surface-bg/30 relative"
     >
       {/* Same radial glow as Contact */}
       <div
@@ -46,13 +46,13 @@ export default function Skills() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 scroll-reveal relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Label */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-6 md:mb-12"
         >
           <p className="text-[11px] font-bold text-neutral-muted tracking-[0.2em] uppercase">
             Tech Stack
@@ -60,28 +60,28 @@ export default function Skills() {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-12">
           {skillCategories.map((category, colIdx) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 * colIdx + 0.1 }}
-              className="space-y-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.1 * colIdx + 0.1 }}
+              className="space-y-4 md:space-y-6"
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 pb-3 border-b border-outline-variant/50">
-                <span className="p-2 bg-white border border-slate-200/60 rounded-lg shadow-sm flex items-center justify-center">
+                <span className="p-2 bg-white border border-slate-200/60 rounded-lg shadow-xs flex items-center justify-center">
                   {columnIcons[category.title] || <Award size={18} />}
                 </span>
 
-                <h3 className="font-display font-semibold text-xl text-[#0F172A]">
+                <h3 className="font-display font-semibold text-lg sm:text-xl text-[#0F172A]">
                   {category.title}
                 </h3>
               </div>
 
               {/* Skill Pills */}
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2 sm:gap-2.5">
                 {category.skills.map((skill) => {
                   const styleRef = columnColors[category.title] || {
                     bg: 'bg-white border-slate-200/60',
@@ -101,9 +101,9 @@ export default function Skills() {
                       }}
                       className={`
                         inline-flex items-center gap-1.5
-                        px-4 py-2
+                        px-3 py-1.5 sm:px-4 sm:py-2
                         border rounded-full
-                        text-sm font-medium
+                        text-xs sm:text-sm font-medium
                         transition-all duration-300
                         hover:shadow-md
                         cursor-pointer
@@ -125,17 +125,17 @@ export default function Skills() {
 
         {/* Learning Note */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 border-l-4 border-[#06B6D4] pl-5 py-3 pr-4 flex items-center gap-2.5 bg-[#06B6D4]/5 rounded-r-xl max-w-4xl"
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 md:mt-16 border-l-4 border-[#06B6D4] pl-4 sm:pl-5 py-3 pr-4 flex items-center gap-2.5 bg-[#06B6D4]/5 rounded-r-xl max-w-4xl"
         >
           <Sparkles
             size={16}
             className="text-[#06B6D4] animate-pulse flex-shrink-0"
           />
 
-          <p className="italic text-[#0F172A] text-sm md:text-base font-light">
+          <p className="italic text-[#0F172A] text-xs sm:text-sm md:text-base font-light leading-relaxed">
             Building modern web experiences while exploring the intersection of front-end development and AI.
           </p>
         </motion.div>

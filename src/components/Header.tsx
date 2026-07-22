@@ -85,15 +85,15 @@ export default function Header({ activeSection }: HeaderProps) {
         id="navbar"
         className={`fixed left-0 right-0 z-40 transition-all duration-500 ease-out border-b ${
           isScrolled
-            ? 'top-4 max-w-6xl mx-auto px-4 md:px-6 bg-transparent border-transparent'
-            : 'top-0 w-full bg-white/60 backdrop-blur-md border-slate-100 px-6 md:px-12'
+            ? 'top-4 max-w-6xl mx-auto px-3.5 sm:px-4 md:px-6 bg-transparent border-transparent'
+            : 'top-0 w-full bg-white/60 backdrop-blur-md border-slate-100 px-4 sm:px-6 md:px-12'
         }`}
       >
         <div
           className={`mx-auto transition-all duration-500 ease-out flex items-center justify-between w-full border ${
             isScrolled
-              ? 'bg-white/85 backdrop-blur-md border-slate-100 rounded-2xl shadow-lg shadow-primary/5 px-6 h-14'
-              : 'bg-transparent border-transparent rounded-2xl lg:px-6 h-20 max-w-7xl'
+              ? 'bg-white/85 backdrop-blur-md border-slate-100 rounded-2xl shadow-lg shadow-primary/5 px-4 sm:px-6 h-14'
+              : 'bg-transparent border-transparent rounded-2xl lg:px-6 h-16 sm:h-20 max-w-7xl'
           }`}
         >
           {/* Brand Logo */}

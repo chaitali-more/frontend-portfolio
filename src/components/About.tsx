@@ -19,13 +19,13 @@ export default function About() {
     <section
       id="about"
       ref={containerRef}
-      className="py-16 md:py-24 border-t border-outline-variant/30 bg-surface-bg/30 relative"
+      className="py-12 md:py-24 border-t border-outline-variant/30 bg-surface-bg/30 relative"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Label */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
           transition={{ duration: 0.5 }}
           className="mb-4 md:mb-8"
         >
@@ -39,12 +39,12 @@ export default function About() {
 
           {/* Left Column: Biography */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-7 space-y-8"
+            className="md:col-span-7 space-y-6 md:space-y-8"
           >
-            <h2 className="font-display text-2xl md:text-4xl font-bold leading-tight text-neutral-dark tracking-tight">
+            <h2 className="font-display text-xl sm:text-2xl md:text-4xl font-bold leading-snug md:leading-tight text-neutral-dark tracking-tight">
               Passionate about turning great design into even better experiences.
             </h2>
 
