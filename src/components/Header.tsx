@@ -147,10 +147,9 @@ export default function Header({ activeSection }: HeaderProps) {
             <button
               id="resume-btn"
               onClick={() => setShowResumeModal(true)}
-              className="group relative overflow-hidden bg-[#0F172A] hover:bg-[#06B6D4] text-white px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0F172A]/10 hover:shadow-lg hover:shadow-[#06B6D4]/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer"
+              className="border border-slate-200 hover:border-[#06B6D4] hover:text-[#06B6D4] bg-white text-[#0F172A] px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex items-center gap-2"
             >
-              <span className="relative z-10 flex items-center gap-2">Resume</span>
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
+              <span>Resume</span>
             </button>
           </div>
 
@@ -260,11 +259,10 @@ export default function Header({ activeSection }: HeaderProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="w-full group relative overflow-hidden bg-[#0F172A] hover:bg-[#06B6D4] text-white py-3.5 rounded-xl font-bold tracking-wider uppercase text-xs cursor-pointer transition-all duration-300 shadow-lg shadow-[#0F172A]/10 flex items-center justify-center gap-2"
+                  className="w-full border border-slate-200 hover:border-[#06B6D4] hover:text-[#06B6D4] bg-white text-[#0F172A] py-3 rounded-xl font-bold tracking-wider uppercase text-xs cursor-pointer transition-all duration-300 shadow-2xs flex items-center justify-center gap-2"
                 >
                   <FileText size={15} />
                   View Resume
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-700" />
                 </motion.button>
               </div>
             </motion.div>

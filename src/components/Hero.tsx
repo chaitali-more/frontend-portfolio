@@ -167,7 +167,7 @@ export default function Hero() {
       {/* ── 5. Ambient Floating Glassmorphic Skill Pills (Subtle, Compact & Balanced) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
         {[
-          { label: '✨ Pixel-Perfect UI', left: '4%', top: '82%', duration: 12, delay: 0 },
+          { label: '✨ Pixel-Perfect UI', left: '8%', top: '82%', duration: 12, delay: 0 },
           { label: '🚀 Responsive Design', left: '80%', top: '22%', duration: 15, delay: 1 },
           { label: '⚡ Fast Performance', left: '76%', top: '84%', duration: 14, delay: 2 },
         ].map((p, i) => (
@@ -236,7 +236,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: -12, filter: 'blur(3px)' }}
                     transition={{ duration: 0.35, ease: 'easeInOut' }}
-                    className="bg-gradient-to-r from-[#0F172A] via-[#06B6D4] to-[#1E293B] bg-clip-text text-transparent font-extrabold block"
+                    className="bg-gradient-to-r from-[#0E7490] via-[#0891B2] to-[#0369A1] bg-clip-text text-transparent font-extrabold block"
                   >
                     {rotatingWords[wordIndex]}
                   </motion.span>
