@@ -4,7 +4,7 @@ import { GraduationCap, Calendar, Star } from 'lucide-react';
 
 export default function Education() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+  const isInView = useInView(containerRef, { once: true, amount: 0.05 });
 
   return (
     <section

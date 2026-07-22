@@ -45,7 +45,9 @@ export default function Header({ activeSection }: HeaderProps) {
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    const wasOpen = isOpen;
     setIsOpen(false);
+    document.body.style.overflow = '';
 
     if (href.startsWith('/')) {
       navigate(href);
@@ -57,16 +59,23 @@ export default function Header({ activeSection }: HeaderProps) {
       return;
     }
 
-    const target = href === '#' ? null : document.querySelector(href);
-
     if (href === '#') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    if (target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
+    const scrollToTarget = () => {
+      const target = document.querySelector(href);
+      if (target) {
+        const top = target.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    };
+
+    if (wasOpen) {
+      setTimeout(scrollToTarget, 60);
+    } else {
+      scrollToTarget();
     }
   };
 
