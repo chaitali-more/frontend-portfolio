@@ -39,6 +39,7 @@ const col3Tech = [
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,16 +65,26 @@ export default function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+  // Smooth mouse spotlight tracking
+  const spotX = useSpring(0, { damping: 35, stiffness: 90 });
+  const spotY = useSpring(0, { damping: 35, stiffness: 90 });
+
   const rotateX = useSpring(useTransform(mouseY, [-300, 300], [6, -6]), { damping: 25, stiffness: 120 });
   const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-6, 6]), { damping: 25, stiffness: 120 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
+    if (heroRef.current) {
+      const rect = heroRef.current.getBoundingClientRect();
+      spotX.set(e.clientX - rect.left);
+      spotY.set(e.clientY - rect.top);
+    }
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      mouseX.set(e.clientX - centerX);
+      mouseY.set(e.clientY - centerY);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -84,26 +95,99 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      ref={heroRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-[#F8FAFC] overflow-hidden border-b border-slate-100 flex flex-col justify-center min-h-[92vh] md:min-h-screen"
     >
-      {/* Subtle blue/purple radial gradient backgrounds */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100/30 via-[#F8FAFC] to-[#F8FAFC]" />
-      <div className="absolute top-[20%] left-1/4 w-[450px] h-[450px] bg-slate-200/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] bg-slate-200/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle blue/cyan radial gradient base */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100/40 via-[#F8FAFC] to-[#F8FAFC]" />
+
+      {/* Floating Ambient Mesh Glow Orbs */}
+      <motion.div
+        animate={{
+          x: [0, 35, -25, 0],
+          y: [0, -30, 20, 0],
+          scale: [1, 1.18, 0.95, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-[8%] left-[12%] w-[480px] h-[480px] bg-gradient-to-tr from-[#06B6D4]/15 via-sky-300/10 to-transparent rounded-full blur-[100px] pointer-events-none"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, -40, 30, 0],
+          y: [0, 35, -25, 0],
+          scale: [1, 0.92, 1.15, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute bottom-[10%] right-[10%] w-[460px] h-[460px] bg-gradient-to-br from-[#0F172A]/10 via-[#06B6D4]/12 to-cyan-200/10 rounded-full blur-[110px] pointer-events-none"
+      />
+
+      <motion.div
+        animate={{
+          scale: [1, 1.25, 1],
+          opacity: [0.08, 0.2, 0.08],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-[35%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-r from-cyan-200/15 via-blue-100/10 to-slate-200/10 rounded-full blur-[120px] pointer-events-none"
+      />
+
+      {/* Interactive Cursor Spotlight Glow */}
+      <motion.div
+        className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full opacity-60 blur-3xl hidden lg:block"
+        style={{
+          left: spotX,
+          top: spotY,
+          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(15, 23, 42, 0.03) 45%, transparent 70%)',
+        }}
+      />
 
       {/* Very light dotted grid overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
 
-      {/* Very subtle code snippets floating in opacity 0.03 */}
-      <div className="absolute top-16 left-8 font-mono text-[9px] text-[#0F172A] opacity-[0.03] select-none pointer-events-none hidden lg:block">
-        {"const [wordIndex, setWordIndex] = useState(0);"}
-        <br />
-        {"useEffect(() => { setWordIndex(index => index + 1) }, 2500);"}
-      </div>
-      <div className="absolute bottom-24 right-1/3 font-mono text-[9px] text-[#0F172A] opacity-[0.03] select-none pointer-events-none hidden lg:block">
-        {"export default function Projects() { const visible = projects.slice(0, 4); }"}
+      {/* Ambient floating tech floating particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden lg:block">
+        {[
+          { symbol: '</>', left: '10%', top: '22%', duration: 16, delay: 0 },
+          { symbol: '{ }', left: '88%', top: '18%', duration: 20, delay: 2 },
+          { symbol: '=>', left: '82%', top: '74%', duration: 18, delay: 4 },
+          { symbol: 'React.js', left: '15%', top: '78%', duration: 22, delay: 1 },
+          { symbol: 'Next.js', left: '46%', top: '14%', duration: 24, delay: 3 },
+        ].map((p, i) => (
+          <motion.div
+            key={`hero-particle-${i}`}
+            initial={{ opacity: 0.15, y: 0 }}
+            animate={{
+              y: [-12, 12, -12],
+              x: [-6, 6, -6],
+              opacity: [0.12, 0.32, 0.12],
+              scale: [0.95, 1.08, 0.95],
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: p.delay,
+            }}
+            className="absolute font-mono text-[11px] font-bold text-[#06B6D4]/50 select-none tracking-widest bg-white/40 backdrop-blur-[2px] px-2 py-0.5 rounded-md border border-[#06B6D4]/10 shadow-xs"
+            style={{ left: p.left, top: p.top }}
+          >
+            {p.symbol}
+          </motion.div>
+        ))}
       </div>
 
       {/* Two-column Hero container */}
