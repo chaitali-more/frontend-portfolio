@@ -266,9 +266,6 @@ export default function Header({ activeSection }: HeaderProps) {
                   View Resume
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-700" />
                 </motion.button>
-                <p className="text-center text-[10px] text-neutral-muted mt-3 font-mono">
-                  Last updated: June 2026
-                </p>
               </div>
             </motion.div>
           </>
