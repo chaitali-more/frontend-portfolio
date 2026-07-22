@@ -164,23 +164,20 @@ export default function Hero() {
       {/* ── 3. Dotted Grid Overlay with Subtle Contrast ── */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-70 pointer-events-none z-0" />
 
-      {/* ── 5. Ambient Floating Glassmorphic Skill Pills (Visible on Mobile & Desktop) ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      {/* ── 5. Ambient Floating Glassmorphic Skill Pills (Subtle, Compact & Balanced) ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
         {[
-          { label: '✨ Pixel-Perfect UI', left: '4%', top: '18%', duration: 12, delay: 0 },
-          { label: '🚀 Responsive Design', left: '74%', top: '14%', duration: 15, delay: 1.5 },
-          { label: '⚡ Fast Performance', left: '78%', top: '80%', duration: 14, delay: 3 },
-          { label: '🎯 Clean Code', left: '5%', top: '82%', duration: 16, delay: 0.5 },
-          { label: '🎨 Seamless UX', left: '40%', top: '10%', duration: 13, delay: 2 },
+          { label: '✨ Pixel-Perfect UI', left: '2%', top: '28%', duration: 12, delay: 0 },
+          { label: '🚀 Responsive Design', left: '82%', top: '22%', duration: 15, delay: 1 },
+          { label: '⚡ Fast Performance', left: '76%', top: '85%', duration: 14, delay: 2 },
         ].map((p, i) => (
           <motion.div
             key={`hero-floating-pill-${i}`}
             initial={{ opacity: 0.7, y: 0 }}
             animate={{
-              y: [-14, 14, -14],
-              x: [-8, 8, -8],
-              opacity: [0.75, 1, 0.75],
-              scale: [0.95, 1.05, 0.95],
+              y: [-8, 8, -8],
+              x: [-4, 4, -4],
+              opacity: [0.7, 0.95, 0.7],
             }}
             transition={{
               duration: p.duration,
@@ -188,10 +185,13 @@ export default function Hero() {
               ease: 'easeInOut',
               delay: p.delay,
             }}
-            className="absolute font-mono text-[10px] sm:text-xs font-bold text-[#0F172A] select-none tracking-wider bg-white/80 border border-[#06B6D4]/30 shadow-md backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5"
+            className="absolute font-sans text-[10px] sm:text-[11px] font-medium text-slate-700 select-none tracking-wide bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1.5"
             style={{ left: p.left, top: p.top }}
           >
-            <span className="w-2 h-2 rounded-full bg-[#06B6D4] animate-ping" />
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06B6D4] opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#06B6D4]" />
+            </span>
             <span>{p.label}</span>
           </motion.div>
         ))}
