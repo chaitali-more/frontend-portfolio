@@ -228,7 +228,7 @@ export default function Hero() {
               Hi, I'm Chaitali More.
               <br />
               Building React apps that{' '}
-              <span className="inline-block relative text-[#0F172A] min-w-[100px] sm:min-w-[170px] md:min-w-[200px] text-left">
+              <span className="inline-block relative text-[#0F172A] min-w-[100px] sm:min-w-[170px] md:min-w-[200px] text-left align-baseline">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={rotatingWords[wordIndex]}
@@ -236,7 +236,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: -12, filter: 'blur(3px)' }}
                     transition={{ duration: 0.35, ease: 'easeInOut' }}
-                    className="bg-gradient-to-r from-[#0E7490] via-[#0891B2] to-[#0369A1] bg-clip-text text-transparent font-extrabold block"
+                    className="bg-gradient-to-r from-[#0E7490] via-[#0891B2] to-[#0369A1] bg-clip-text text-transparent font-extrabold block pb-3 pt-1 -mb-3"
                   >
                     {rotatingWords[wordIndex]}
                   </motion.span>
