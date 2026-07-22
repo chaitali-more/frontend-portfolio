@@ -167,9 +167,9 @@ export default function Hero() {
       {/* ── 5. Ambient Floating Glassmorphic Skill Pills (Subtle, Compact & Balanced) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden md:block">
         {[
-          { label: '✨ Pixel-Perfect UI', left: '2%', top: '28%', duration: 12, delay: 0 },
-          { label: '🚀 Responsive Design', left: '82%', top: '22%', duration: 15, delay: 1 },
-          { label: '⚡ Fast Performance', left: '76%', top: '85%', duration: 14, delay: 2 },
+          { label: '✨ Pixel-Perfect UI', left: '4%', top: '82%', duration: 12, delay: 0 },
+          { label: '🚀 Responsive Design', left: '80%', top: '22%', duration: 15, delay: 1 },
+          { label: '⚡ Fast Performance', left: '76%', top: '84%', duration: 14, delay: 2 },
         ].map((p, i) => (
           <motion.div
             key={`hero-floating-pill-${i}`}
