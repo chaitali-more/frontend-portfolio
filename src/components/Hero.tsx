@@ -304,7 +304,7 @@ export default function Hero() {
 
             <a
               id="download-resume-btn"
-              href={resumePdf}
+              href="/more-chaitali-resume.pdf"
               download="more-chaitali-resume.pdf"
               target="_blank"
               rel="noreferrer"

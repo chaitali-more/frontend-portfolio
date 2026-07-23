@@ -310,7 +310,7 @@ export default function Header({ activeSection }: HeaderProps) {
               <div className="flex flex-col gap-3">
                 <a
                   id="resume-download-link"
-                  href={resumePdf}
+                  href="/more-chaitali-resume.pdf"
                   download="more-chaitali-resume.pdf"
                   target="_blank"
                   rel="noreferrer"
