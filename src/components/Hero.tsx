@@ -7,7 +7,7 @@ import {
   SiFigma, SiGoogle, SiDotnet, SiJavascript, SiHtml5, 
   SiCss, SiBootstrap, SiJquery, SiWordpress, SiGithub 
 } from 'react-icons/si';
-import resumePdf from '../assets/pdf/chaitali-more-resume.pdf';
+import resumePdf from '../assets/pdf/more-chaitali-resume.pdf';
 
 const rotatingWords = ['scale.', 'perform.', 'convert.', 'impress.', 'grow.'];
 
@@ -250,7 +250,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg text-[#64748B] font-sans font-light leading-relaxed max-w-xl"
             >
-              Frontend Developer with 4+ years of experience building responsive, accessible and SEO-optimized web applications using React.js, Next.js, JavaScript and modern frontend technologies.
+              Frontend Developer with 4+ years of experience developing responsive, high-performance web applications using React.js and ASP.NET (ASPX). Delivered 200+ projects, improved performance by up to 40%, and achieved 90+ SEO scores.
             </motion.p>
           </div>
 
@@ -305,7 +305,7 @@ export default function Hero() {
             <a
               id="download-resume-btn"
               href={resumePdf}
-              download="chaitali-more-resume.pdf"
+              download="more-chaitali-resume.pdf"
               target="_blank"
               rel="noreferrer"
               className="

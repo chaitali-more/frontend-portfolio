@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Download, Code2 } from 'lucide-react';
-import resumePdf from '../assets/pdf/chaitali-more-resume.pdf';
+import resumePdf from '../assets/pdf/more-chaitali-resume.pdf';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -311,7 +311,7 @@ export default function Header({ activeSection }: HeaderProps) {
                 <a
                   id="resume-download-link"
                   href={resumePdf}
-                  download="chaitali-more-resume.pdf"
+                  download="more-chaitali-resume.pdf"
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => setShowResumeModal(false)}

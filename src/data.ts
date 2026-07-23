@@ -38,85 +38,65 @@ export const experiences: Experience[] = [
     role: 'Frontend Developer',
     company: 'Dots & Coms',
     period: 'Nov 2022 - Present',
-  bullets: [
-  'Delivered 200+ front-end projects including new builds, redesigns, maintenance, and feature enhancements.',
-    'Implemented on-page SEO best practices using SiteChecker and Semrush, improving Core Web Vitals, page speed, and search visibility.',
-  'Developed modern React.js applications and reusable UI components, improving maintainability and user experience.',
-  'Built, maintained, and optimized Shopify websites, including SEO improvements and ongoing feature updates.',
-
-  'Converted Figma and Photoshop designs into responsive web applications using ASP.NET, HTML5, CSS3, Bootstrap, JavaScript, and jQuery.',
-    'Identified and resolved UI/UX issues, broken links, and performance bottlenecks across live production websites.',
-
-  'Led 60+ projects through development, testing, deployment, and post-launch support, ensuring timely delivery.',
-  'Managed deployments using FileZilla and coordinated release activities with development teams.',
-  'Designed responsive email templates and professional email signatures aligned with client branding.',
-  'Mentored interns and junior developers, promoting coding standards and front-end best practices.',
-  'Performed continuous enhancements and maintenance for WordPress and custom web applications.'
-],
-    tags: ['React.js','JavaScript', 'ASP.NET', 'Tailwind', 'HTML5',  'CSS3', 'Bootstrap',  'jQuery', 'Shopify', 'WordPress', 'Semrush', 'SiteChecker','FileZilla'],
+    bullets: [
+      'Delivered 200+ front-end projects including new builds, redesigns, and long-term maintenance.',
+      'Developed and scaled React.js and ASP.NET applications using reusable components, hooks, and modular architecture.',
+      'Converted Figma and Photoshop designs into responsive, mobile-first, pixel-perfect interfaces using React.js, Tailwind CSS, and Bootstrap.',
+      'Implemented SEO strategies using SEMrush and SiteChecker, consistently achieving 90+ SEO scores.',
+      'Optimized performance using code splitting, lazy loading, and best frontend practices, improving page speed by up to 40%.',
+      'Led 80+ projects end-to-end, managing development, testing, deployment, and performance monitoring.',
+      'Handled end-to-end website deployment and production updates using FileZilla.',
+      'Mentored junior developers, improving team productivity and enabling independent project delivery.',
+    ],
+    tags: ['React.js', 'ASP.NET', 'JavaScript (ES6+)', 'Tailwind CSS', 'Bootstrap', 'HTML5', 'CSS3', 'SEMrush', 'SiteChecker', 'FileZilla'],
   },
   {
     id: 'exp2',
     role: 'Frontend Developer',
-    company: 'Evol Technobits Digital',
+    company: 'Technobits Digital',
     period: 'Jul 2021 - Aug 2022',
     bullets: [
-      'Contributed to diverse projects, including cryptocurrency platforms, dashboards, CRMs, and web-based applications.',
-          'Used GitHub for version control, facilitating smooth collaboration across development teams.',
-
-      'Developed a React.js immigration website, implementing dynamic features with React Hooks, React Router, reusable components, and third-party plugins for form validation and state management.',
-'Built responsive and user-friendly interfaces using HTML5, CSS3, Bootstrap, JavaScript, jQuery, and Django, ensuring cross-browser and cross-device compatibility.',
-      'Improved website visibility and traffic by applying on-site SEO strategies and using Ahrefs for optimization.',
-      'Designed and launched email campaigns via EasySendy, creating responsive HTML templates and newsletters.',
-      'Mentored interns in front-end development, encouraging best practices and skill development.',
+      'Contributed to projects including cryptocurrency platforms, dashboards, CRM systems, and web applications.',
+      'Developed React.js applications using React Hooks, React Router, reusable components, and form validation.',
+      'Built responsive, cross-browser interfaces using HTML5, CSS3, Bootstrap, JavaScript, jQuery, and Django.',
+      'Improved search rankings using SEO strategies and Ahrefs, and created responsive email campaigns via EasySendy.',
+      'Collaborated using GitHub for version control and team workflows.',
     ],
-    tags: ['React', 'JavaScript', 'jQuery',  'HTML', 'CSS', 'Bootstrap','GitHub','Django', 'Ahrefs', ],
+    tags: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap', 'jQuery', 'Django', 'Ahrefs', 'EasySendy', 'GitHub'],
   },
 ];
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: 'Core',
-    skills: [
-      'JavaScript (ES6+)',
-      'TypeScript',
-      'HTML5',
-      'CSS3',
-      'SCSS/Sass',
-      'Bootstrap',
-      'jQuery',
-  'Responsive Design',
-  'REST API Integration',
-  'Performance Optimization'
-    ],
-  },
-  {
-    title: 'Frameworks',
+    title: 'Tech',
     skills: [
       'React.js',
       'Next.js',
-      'Redux Toolkit',
+      'JavaScript (ES6+)',
+      'HTML5',
+      'CSS3/SCSS',
       'Tailwind CSS',
-      'Shopify Liquid',
-      'ASP.NET',
+      'Bootstrap',
+      'jQuery',
     ],
   },
   {
     title: 'Tools',
     skills: [
-      'Git',
       'GitHub',
-      
-      'Figma',
-       'Photoshop',
       'FileZilla',
-      'WordPress',
+      'Figma',
+      'Photoshop',
+    ],
+  },
+  {
+    title: 'CMS / SEO',
+    skills: [
       'Shopify',
-      'Semrush',
-      'Ahrefs',
+      'WordPress',
+      'SEMrush',
       'SiteChecker',
-      'Vite',
-     'Vercel'
+      'Ahrefs',
     ],
   },
 ];

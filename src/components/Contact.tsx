@@ -83,7 +83,7 @@ export default function Contact() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-2 sm:pt-4 w-full sm:w-auto">
               <a
                 id="email-me-link"
-                href="mailto:chaitalicoding@gmail.com"
+                href="mailto:chaitali1266@gmail.com"
                 className="w-full sm:w-auto justify-center group relative overflow-hidden bg-[#0F172A] hover:bg-[#06B6D4] text-white px-6 py-3 rounded-xl text-sm font-semibold tracking-wide shadow-lg shadow-[#0F172A]/10 hover:shadow-xl hover:shadow-[#06B6D4]/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex items-center gap-2.5"
               >
                 <FaEnvelope size={18} />

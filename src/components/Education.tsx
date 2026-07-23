@@ -84,10 +84,10 @@ export default function Education() {
                 className="font-display font-bold text-base sm:text-lg md:text-xl leading-snug"
                 style={{ color: '#0F172A' }}
               >
-                B.Tech in Computer Science and Engineering (CSE)
+                B.E. Computer Science
               </h3>
               <p className="text-xs sm:text-sm md:text-base text-neutral-muted font-sans font-light mt-0.5">
-                ITM Universe, Vadodara, Gujarat
+                ITM (SLS) Baroda University, Vadodara, GJ, IN
               </p>
             </div>
           </div>
