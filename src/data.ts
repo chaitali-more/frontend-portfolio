@@ -201,7 +201,7 @@ export const projects: Project[] = [
     imageUrl: smartTaskManagerImage,
     title: 'Smart Task Manager',
     description:
-      'Developed a modern Smart Task Manager using React.js and Tailwind CSS, implementing complete CRUD functionality with task creation, editing, deletion, and completion tracking. Added advanced features including search, task filtering (All, Completed, Pending), real-time statistics, form validation, persistent data storage using Local Storage, and Dark/Light mode with Tailwind CSS. Applied React Hooks such as useState, useEffect, useContext, useMemo, and useRef to manage state, optimize performance, handle side effects, eliminate prop drilling through Context API, and improve user experience. Built a fully responsive interface with reusable components, clean code architecture, and smooth interactions, following modern React development practices.',
+      'Developed a modern Smart Task Manager using React.js and Tailwind CSS with CRUD features, search, filtering, real-time stats, dark/light mode, form validation, and Local Storage. Applied React Hooks such as useState, useEffect, useContext, useMemo, and useRef to manage state, optimize performance, handle side effects, eliminate prop drilling through Context API, and improve user experience.',
     tags: [
       'React.js',
       'Tailwind CSS',
