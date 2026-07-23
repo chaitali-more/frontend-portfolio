@@ -6,6 +6,7 @@ import studioVarnVideo from './assets/videos/studio-varn-video.mp4';
 import uniqueenVideo from './assets/videos/uniqueencream.mp4';
 import shrikptiwariVideo from './assets/videos/shrikptiwari.mp4';
 import reactHooksLabImage from './assets/images/react-hooks-lab.png';
+import smartTaskManagerImage from './assets/images/smart-task-manager.png';
 
 
 export const stats: Stat[] = [
@@ -193,6 +194,25 @@ export const projects: Project[] = [
     tags: ['React.js', 'Tailwind CSS', 'TypeScript', 'Hooks', 'Vercel'],
     liveUrl: 'https://react-hooks-jet-seven.vercel.app/',
     githubUrl: 'https://github.com/chaitali-more/React-Hooks',
+  },
+  {
+    id: 'proj_smart_task_manager',
+    category: 'Practice Project',
+    imageUrl: smartTaskManagerImage,
+    title: 'Smart Task Manager',
+    description:
+      'Developed a modern Smart Task Manager using React.js and Tailwind CSS, implementing complete CRUD functionality with task creation, editing, deletion, and completion tracking. Added advanced features including search, task filtering (All, Completed, Pending), real-time statistics, form validation, persistent data storage using Local Storage, and Dark/Light mode with Tailwind CSS. Applied React Hooks such as useState, useEffect, useContext, useMemo, and useRef to manage state, optimize performance, handle side effects, eliminate prop drilling through Context API, and improve user experience. Built a fully responsive interface with reusable components, clean code architecture, and smooth interactions, following modern React development practices.',
+    tags: [
+      'React.js',
+      'Tailwind CSS',
+      'JavaScript',
+      'React Context API',
+      'React Hooks',
+      'Local Storage',
+      'Vercel',
+    ],
+    liveUrl: 'https://smart-task-manager-gold-eight.vercel.app/',
+    githubUrl: 'https://github.com/chaitali-more/smart-task-manager',
   },
 {
   id: 'proj3',
